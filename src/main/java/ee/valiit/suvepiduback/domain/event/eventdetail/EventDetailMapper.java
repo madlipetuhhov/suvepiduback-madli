@@ -20,7 +20,7 @@ public interface EventDetailMapper {
     EventDetail toEventDetail(EventDetailInfo eventDetailInfo);
 
     @Mapping(source = "county.id",target = "countyId")
-    @Mapping(expression = "java(LocalDateConverter.localDateToDateInputString   (eventDetail.getDate()))", target = "date")
+    @Mapping(expression = "java(LocalDateConverter.localDateToDateInputString(eventDetail.getDate()))", target = "date")
     @Mapping(expression = "java(LocalTimeConverter.localTimeToString(eventDetail.getStartTime()))", target = "startTime")
     @Mapping(expression = "java(LocalTimeConverter.localTimeToString(eventDetail.getEndTime()))", target = "endTime")
     EventDetailInfo toEventDetailInfo(EventDetail eventDetail);
