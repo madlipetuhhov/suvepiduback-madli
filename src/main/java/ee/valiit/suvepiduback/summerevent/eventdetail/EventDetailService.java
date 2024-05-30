@@ -25,7 +25,6 @@ public class EventDetailService {
     private final EventDetailMapper eventDetailMapper;
 
     public Integer addEventDetail(Integer mainEventId, EventDetailInfo eventDetailInfo) {
-
         MainEvent mainEvent = mainEventRepository.getReferenceById(mainEventId);
         County county = countyRepository.getReferenceById(eventDetailInfo.getCountyId());
         EventDetail eventDetail = eventDetailMapper.toEventDetail(eventDetailInfo);

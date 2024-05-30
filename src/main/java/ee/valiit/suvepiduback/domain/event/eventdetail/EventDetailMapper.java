@@ -21,6 +21,8 @@ public interface EventDetailMapper {
 
     @Mapping(source = "county.id",target = "countyId")
     @Mapping(expression = "java(LocalDateConverter.localDateToDateInputString   (eventDetail.getDate()))", target = "date")
+    @Mapping(expression = "java(LocalTimeConverter.localTimeToString(eventDetail.getStartTime()))", target = "startTime")
+    @Mapping(expression = "java(LocalTimeConverter.localTimeToString(eventDetail.getEndTime()))", target = "endTime")
     EventDetailInfo toEventDetailInfo(EventDetail eventDetail);
 
 
@@ -28,6 +30,8 @@ public interface EventDetailMapper {
     @Mapping(source = "county.id",target = "countyId")
     @Mapping(source = "county.county",target = "countyName")
     @Mapping(expression = "java(LocalDateConverter.localDateToString(eventDetail.getDate()))", target = "date")
+    @Mapping(expression = "java(LocalTimeConverter.localTimeToString(eventDetail.getStartTime()))", target = "startTime")
+    @Mapping(expression = "java(LocalTimeConverter.localTimeToString(eventDetail.getEndTime()))", target = "endTime")
     EventDetailInfoExtended toEventDetailInfoExtended(EventDetail eventDetail);
 
     List<EventDetailInfoExtended> toEventDetailInfosExtended(List<EventDetail> eventDetails);

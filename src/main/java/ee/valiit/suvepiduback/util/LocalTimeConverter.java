@@ -3,6 +3,8 @@ package ee.valiit.suvepiduback.util;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+
 public class LocalTimeConverter {
 
     public static LocalTime stringToLocalTime(String timeString) {
@@ -17,9 +19,18 @@ public class LocalTimeConverter {
         }
 
         // Create a LocalDateTime object with the given hours and minutes
-        LocalDateTime localDateTime = LocalDateTime.of(1, 1, 1, hours, minutes);
+//        LocalDateTime localDateTime = LocalDateTime.of(1, 1, 1, hours, minutes);
 
         // Convert to Estonia timezone (UTC+3)
-        return localDateTime.atZone(ZoneId.of("Europe/Tallinn")).withZoneSameInstant(ZoneId.of("UTC+3")).toLocalTime();
+//        return localDateTime.atZone(ZoneId.of("Europe/Tallinn")).withZoneSameInstant(ZoneId.of("UTC+3")).toLocalTime();
+        return LocalTime.of(hours, minutes);
     }
+
+    public static String localTimeToString(LocalTime localTime) {
+        // Create a formatter for the desired time format
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        // Format the LocalTime object using the formatter
+        return localTime.format(formatter);
+    }
+
 }

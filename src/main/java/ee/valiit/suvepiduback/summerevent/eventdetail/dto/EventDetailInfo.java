@@ -8,8 +8,6 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
 
 /**
  * DTO for {@link ee.valiit.suvepiduback.domain.event.eventdetail.EventDetail}

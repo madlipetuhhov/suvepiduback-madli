@@ -89,19 +89,19 @@ VALUES (default, 1, 'Investeerimismatk - krüpto eri!',
 
 INSERT INTO suvepidu.event_detail (id, main_event_id, county_id, date, start_time, end_time, address, longitude,
                                    latitude)
-VALUES (default, 1, 6, '2024-05-08', '19:00:00', '21:00:00', 'Vihula Mõis', 12.000000, 21.000000);
+VALUES (default, 1, 6, '2024-05-08', '19:00', '21:00', 'Vihula Mõis', 12.000000, 21.000000);
 INSERT INTO suvepidu.event_detail (id, main_event_id, county_id, date, start_time, end_time, address, longitude,
                                    latitude)
-VALUES (default, 1, 9, '2024-05-18', '19:00:00', '21:00:00', 'Pärnu Vallikäär', 12.000000, 21.000000);
+VALUES (default, 1, 9, '2024-05-18', '19:00', '21:00', 'Pärnu Vallikäär', 12.000000, 21.000000);
 INSERT INTO suvepidu.event_detail (id, main_event_id, county_id, date, start_time, end_time, address, longitude,
                                    latitude)
-VALUES (default, 1, 12, '2024-05-28', '19:00:00', '21:00:00', 'Tartu Laululava', 12.000000, 21.000000);
+VALUES (default, 1, 12, '2024-05-28', '19:00', '21:00', 'Tartu Laululava', 12.000000, 21.000000);
 INSERT INTO suvepidu.event_detail (id, main_event_id, county_id, date, start_time, end_time, address, longitude,
                                    latitude)
-VALUES (default, 3, 1, '2024-06-05', '12:00:00', '16:00:00', 'Kõnnu Suursoo matkarada', 12.000000, 21.000000);
+VALUES (default, 3, 1, '2024-06-05', '12:00', '16:00', 'Kõnnu Suursoo matkarada', 12.000000, 21.000000);
 INSERT INTO suvepidu.event_detail (id, main_event_id, county_id, date, start_time, end_time, address, longitude,
                                    latitude)
-VALUES (default, 2, 1, '2024-07-10', '12:00:00', '19:00:00', 'Tallinna Lauluväljak', 12.000000, 21.000000);
+VALUES (default, 2, 1, '2024-07-10', '12:00', '19:00', 'Tallinna Lauluväljak', 12.000000, 21.000000);
 
 INSERT INTO suvepidu.ticket_type (id, main_event_id, name, price)
 VALUES (default, 1, 'Täiskasvanud', 35);
