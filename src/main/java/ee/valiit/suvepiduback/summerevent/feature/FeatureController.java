@@ -15,7 +15,7 @@ public class FeatureController {
 
     @GetMapping("/features")
     @Operation(summary = "Võimaluste valiku loomine.",
-            description = "Süsteemist otsitakse võimalused (featureName) ja tagastab võimaluste massiivi.")
+            description = "Tagastab võimaluste massiivi.")
     public List<FeatureInfo> executeFeaturesList() {
         return featureService.executeFeaturesList();
     }

@@ -27,18 +27,13 @@ public class TicketService {
 
 
     public void addNewTicket(EventTicketRequest eventTicketRequest) {
-
         EventDetail eventDetail = eventDetailRepository.getReferenceById(eventTicketRequest.getEventDetailId());
         TicketType ticketType = ticketTypeRepository.getReferenceById(eventTicketRequest.getTicketTypeId());
         EventTicket eventTicket = eventTicketMapper.toEventTicket(eventTicketRequest);
         eventTicket.setEventDetail(eventDetail);
         eventTicket.setTicketType(ticketType);
         eventTicketRepository.save(eventTicket);
-
-        //Vbla läheb eventTicketId'd tarvis
-        //return eventTicket.getId();
     }
-
 
     public List<EventTicketInfo> getEventTickets(Integer eventDetailId) {
         List<EventTicket> eventTickets = eventTicketRepository.findEventTicketsBy(eventDetailId);

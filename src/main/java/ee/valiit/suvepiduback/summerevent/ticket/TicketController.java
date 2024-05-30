@@ -16,22 +16,22 @@ public class TicketController {
     private final TicketService ticketService;
 
     @PostMapping("/event/ticket")
-    @Operation(summary = "Uuele sündmusele piletikoguse ja saadavuse lisamine. Tagastab eventTicketId??. ",
-            description = "Süsteemi lisatakse sündmusele juurde piletikogused ja saadavused.")
+    @Operation(summary = "Sündmuse toimumiskohale piletite koguse ja saadavuse lisamine.",
+            description = "Andmebaasi lisatakse sündmuse toimumiskohale juurde piletikogused ja saadavused (eventDetailId abil).")
     public void addNewTicket(@RequestBody EventTicketRequest eventTicketInfo) {
         ticketService.addNewTicket(eventTicketInfo);
     }
 
     @GetMapping("/event/tickets")
-    @Operation(summary = "Kõikide piletite toomine andmebaasist",
-            description = "Andmebaasist tuuakse kõik piletid eventDetailId abil, kui selle staatus on aktiivne.")
+    @Operation(summary = "Kõikide piletite koguste ja saadavuste toomine andmebaasist vastava sünmduse toimumiskoha kohta.",
+            description = "Andmebaasist tuuakse kõik piletite kogused ja saadavus eventDetailId abil, kui nende staatus on aktiivne.")
     public List<EventTicketInfo> getEventTickets(@RequestParam Integer eventDetailId) {
         return ticketService.getEventTickets(eventDetailId);
     }
 
     @GetMapping("/event/ticket-types")
-    @Operation(summary = "Piletitüüpide valiku loomine",
-            description = "Süsteemist otsitakse piletitüübid mainEventId järgi ja tagastatakse ticketType massiiv.")
+    @Operation(summary = "Piletitüüpide valiku loomine.",
+            description = "Tagastatakse piletitüüpide massiivi.")
     public List<EventTicketTypeInfo> getEventTicketTypes(@RequestParam Integer mainEventId) {
         return ticketService.getEventTicketTypes(mainEventId);
     }

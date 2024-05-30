@@ -15,8 +15,8 @@ public class EventCategoryController {
 
     //    post meetod ei ole frondis kasutusel, put meetodi abil toimub muutmine
     @PostMapping("/event/categories")
-    @Operation(summary = "Uuele sündmusele kategooriate lisamine.",
-            description = "Süsteemi lisatakse sündmusele juurde kategooriad mainEventId abil.")
+    @Operation(summary = "Sündmusele kategooriate lisamine.",
+            description = "Andmebaasi lisatakse sündmusele juurde kategooriad mainEventId abil.")
     public void updateCategories(@RequestParam Integer mainEventId, @RequestBody List<CategoryInfo> categoryInfos) {
         eventCategoryService.updateCategories(mainEventId, categoryInfos);
     }
@@ -37,7 +37,7 @@ public class EventCategoryController {
 
     @PutMapping("/event/categories-modal")
     @Operation(summary = "Olemasolevate kategooriate andmete muutmine.",
-            description = "Andmebaasis kirjutatakse üle andmed.")
+            description = "Andmebaasis kirjutatakse üle olemasoleva sündmuse kategooriate andmed mainEventId abil.")
     public void editEventCategories(@RequestParam Integer mainEventId, @RequestBody List<CategoryInfo> categoryInfos) {
         eventCategoryService.editEventCategories(mainEventId, categoryInfos);
     }

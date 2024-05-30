@@ -18,7 +18,6 @@ public class CountyService {
 
     public List<CountyInfo> executeCountyList() {
         List<County> counties = countyRepository.findAll();
-
         return countyMapper.toCountyInfos(counties);
     }
 }

@@ -15,7 +15,7 @@ public class CategoryController {
 
     @GetMapping("/categories")
     @Operation(summary = "Kategooriate valiku loomine.",
-            description = "Süsteemist otsitakse kategooriad (categoryName) ja tagastab kategooriate massiivi.")
+            description = "Tagastab kategooriate massiivi.")
     public List<CategoryInfo> executeCategoriesList() {
         return categoryService.executeCategoriesList();
     }

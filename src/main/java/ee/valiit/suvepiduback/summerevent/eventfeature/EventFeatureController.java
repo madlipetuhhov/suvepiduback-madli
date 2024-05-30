@@ -15,8 +15,8 @@ public class EventFeatureController {
 
 //    post meetod ei ole frondis kasutusel, put meetodi abil toimub muutmine
     @PostMapping("/event/features")
-    @Operation(summary = "Uuele sündmusele võimaluste lisamine. Tagastab mainEventId. ",
-            description = "Süsteemi lisatakse sündmusele juurde võimalused mainEventId abil.")
+    @Operation(summary = "Sündmusele võimaluste lisamine.",
+            description = "Andmebaasi lisatakse sündmusele juurde võimalused mainEventId abil.")
     public void updateFeatures(@RequestParam Integer mainEventId, @RequestBody List<FeatureInfo> featureInfos) {
         eventFeatureService.updateFeatures(mainEventId,featureInfos);
     }
@@ -37,7 +37,7 @@ public class EventFeatureController {
 
     @PutMapping("/event/features-modal")
     @Operation(summary = "Olemasolevate võimaluste andmete muutmine.",
-            description = "Andmebaasis kirjutatakse üle andmed.")
+            description = "Andmebaasis kirjutatakse üle olemasoleva sündmuse võimaluste andmed mainEventId abil.")
     public void editEventFeatures(@RequestParam Integer mainEventId, @RequestBody List<FeatureInfo> featureInfos) {
         eventFeatureService.editEventFeatures(mainEventId, featureInfos);
     }

@@ -18,6 +18,5 @@ public class BusinessService {
     public List<BusinessesDropdownInfo> executeBusinessesDropdown() {
         List<Business> businesses = businessRepository.findAll();
         return businessMapper.toBusinessesDropdownInfos(businesses);
-
     }
 }

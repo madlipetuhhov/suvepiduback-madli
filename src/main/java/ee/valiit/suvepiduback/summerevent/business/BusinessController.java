@@ -13,8 +13,8 @@ import java.util.List;
 public class BusinessController {
     private final BusinessService businessService;
     @GetMapping("/businesses")
-    @Operation(summary = "Ettevõtete (companyName) valiku loomine. Tagastab businessId.",
-            description = "Süsteemist otsitakse businessId abil ettevõtted (companyName).")
+    @Operation(summary = "Ettevõtete valiku loomine.",
+            description = "Tagastab ettevõtete massiivi.")
     public List<BusinessesDropdownInfo> executeBusinessesDropdown() {
         return businessService.executeBusinessesDropdown();
     }

@@ -14,8 +14,8 @@ public class MainEventController {
     private final MainEventService mainEventService;
 
     @PostMapping("/event/main")
-    @Operation(summary = "Uue sündmuse lisamine. Tagastab mainEventId ",
-            description = "Süsteemi lisatakse uus sündmus koos title, description ja imageData'ga.")
+    @Operation(summary = "Uue sündmuse lisamine.",
+            description = "Andmebaasi lisatakse uus sündmus. Tagastab mainEventId ")
     public Integer addNewMainEvent(@RequestParam Integer businessId, @RequestBody MainEventInfo mainEventInfo) {
         // siin nt NewMainEventInfo DTO ilma ID-ta
 //        tagastab mainEventId, et navigeerida frondis featureCategoryRoutile
@@ -35,7 +35,7 @@ public class MainEventController {
 
     // siin tagastad DTO objekti listi objektidest, millel on ID-d küljes
     @GetMapping("/events/main")
-    @Operation(summary = "Kõikide sündmuste toomine andmebaasist vastava ettevõtte (businessId) kohta.",
+    @Operation(summary = "Kõikide sündmuste toomine andmebaasist vastava ettevõtte kohta.",
             description = "Andmebaasist tuuakse vastava ettevõtte kõik aktiivse staatusega sündmused businessId abil.")
     public List<MainEventInfoExtended> getMainEvents(@RequestParam Integer businessId) {
         // get list of MainEventInfo objects by business ID to only show relevant events
@@ -46,7 +46,7 @@ public class MainEventController {
 
     // siin tagastad uuendatud DTO objekti , millel on ID küljes (UPD:  bank33back pealt vaadates, et ei pea tagastama)
     @PutMapping("/event/main")
-    @Operation(summary = "Olemasoleva sündmuse andmete muutmine mainEventId abil.",
+    @Operation(summary = "Olemasoleva sündmuse andmete muutmine.",
             description = "Andmebaasis kirjutatakse üle olemasoleva sündmuse andmed.")
     public void editMainEvent(@RequestBody MainEventInfoExtended mainEventInfoExtended) {
         // siin nt UpdateMainEventInfo DTO koos ID-ga
@@ -58,7 +58,7 @@ public class MainEventController {
 
     // siin tagastad kustutatud objekti ID, aga ainult selleks, et kontrollida frontendis kas see õnnestus
     @DeleteMapping("/event/main")
-    @Operation(summary = "Olemasoleva sündmuse eemaldamine mainEventId abil.",
+    @Operation(summary = "Olemasoleva sündmuse eemaldamine.",
             description = "Andmebaasist reaalselt sündmust ei eemaldata, vaid deaktiveeritakse.")
     public Integer removeMainEvent(@RequestParam Integer mainEventId) {
         // delete MainEventInfo by ID

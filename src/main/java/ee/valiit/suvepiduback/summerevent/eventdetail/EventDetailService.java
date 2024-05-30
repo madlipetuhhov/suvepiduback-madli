@@ -53,19 +53,5 @@ public class EventDetailService {
     }
 }
 
-// Enne kui hakkad mapperiga tekitama uut objekti eventDetail (entity)
-//  siis pead leidma ülesse sissetulnud foreing keyd kui entity objektid.
-//  Seda saad teha vastavate repositoryde abil
-
-// Siis kasutad eventDetailMapperit, et luua uus 'eventDetail' objekt. Seda objekti on hiljem vaja siis andmebaasi salvestad
-// Ära saad mäppida väljad: date,start_time,end_time,address,longitude,latitude
-// start_time,end_time mäppimiseks vaada pangast näidet src/main/java/ee/valiit/bank33back/domain/location/locationimage/LocationImageMapper.java
-// rida 7 ja rida12
-// väga tähtis on rida 7 osa imports = {StringConverter.class}
-
-// peale mäppimist pead keskenuduma väljade main_event_id,county_id täitmisele. Varasemalt on sul siinseks hetkeks need foregin key objektid ülesse leitud
-// pead need 'eventDetail' objektile külge panema
-// nyyd saad selle eventDetail objekti andmebaasi repository abil ära salvestadada
-// the end
 
 
