@@ -2,6 +2,8 @@ INSERT INTO suvepidu.role (id, name)
 VALUES (default, 'tavakasutaja');
 INSERT INTO suvepidu.role (id, name)
 VALUES (default, 'korraldaja');
+INSERT INTO suvepidu.role (id, name)
+VALUES (default, 'uus korraldaja');
 
 INSERT INTO suvepidu."user" (id, role_id, username, password, status)
 VALUES (default, 1, 'kasutaja', '123', 'A');
@@ -9,6 +11,8 @@ INSERT INTO suvepidu."user" (id, role_id, username, password, status)
 VALUES (default, 2, 'korraldaja', '123', 'A');
 INSERT INTO suvepidu."user" (id, role_id, username, password, status)
 VALUES (default, 1, 'mitteaktiivne', '123', 'D');
+INSERT INTO suvepidu."user" (id, role_id, username, password, status)
+VALUES (default, 2, 'uus korraldaja', '123', 'A');
 
 INSERT INTO suvepidu.business (id, user_id, company_name, phone, email, registry_code, vat_number, status)
 VALUES (default, 2, 'Peod OÜ', '123', 'pidu@mpeod.ee', '123', '123', 'A');

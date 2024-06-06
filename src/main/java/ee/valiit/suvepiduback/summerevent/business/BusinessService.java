@@ -15,8 +15,8 @@ public class BusinessService {
 
     private final BusinessRepository businessRepository;
     private final BusinessMapper businessMapper;
-    public List<BusinessesDropdownInfo> executeBusinessesDropdown() {
-        List<Business> businesses = businessRepository.findAll();
+    public List<BusinessesDropdownInfo> executeBusinessesDropdown(Integer userId) {
+        List<Business> businesses = businessRepository.findBusinessesBy(userId);
         return businessMapper.toBusinessesDropdownInfos(businesses);
     }
 }
