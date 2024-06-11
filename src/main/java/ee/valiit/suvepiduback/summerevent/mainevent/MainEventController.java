@@ -1,6 +1,5 @@
 package ee.valiit.suvepiduback.summerevent.mainevent;
 
-import ee.valiit.suvepiduback.summerevent.eventdetail.EventDetailService;
 import ee.valiit.suvepiduback.summerevent.mainevent.dto.MainEventInfo;
 import ee.valiit.suvepiduback.summerevent.mainevent.dto.MainEventInfoExtended;
 import io.swagger.v3.oas.annotations.Operation;

@@ -2,7 +2,6 @@ package ee.valiit.suvepiduback.summerevent.eventdetail;
 
 import ee.valiit.suvepiduback.summerevent.eventdetail.dto.EventDetailInfo;
 import ee.valiit.suvepiduback.summerevent.eventdetail.dto.EventDetailInfoExtended;
-import ee.valiit.suvepiduback.summerevent.mainevent.dto.MainEventInfo;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
