@@ -15,7 +15,7 @@ public class CountyController {
     private final CountyService countyService;
 
     @GetMapping("/counties")
-    @Operation(summary = "Maakondade valiku loomine",
+    @Operation(summary = "Maakondade valiku loomine dropdown valiku jaoks.",
             description = "Tagastab maakondade massiivi.")
     public List<CountyInfo> executeCountyList() {
         return countyService.executeCountyList();

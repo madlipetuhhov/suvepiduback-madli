@@ -26,7 +26,7 @@ public class TicketService {
     private final TicketTypeMapper ticketTypeMapper;
 
 
-    public void addNewTicket(EventTicketRequest eventTicketRequest) {
+    public void addTickets(Integer eventDetailId, EventTicketRequest eventTicketRequest) {
         EventDetail eventDetail = eventDetailRepository.getReferenceById(eventTicketRequest.getEventDetailId());
         TicketType ticketType = ticketTypeRepository.getReferenceById(eventTicketRequest.getTicketTypeId());
         EventTicket eventTicket = eventTicketMapper.toEventTicket(eventTicketRequest);
@@ -40,9 +40,5 @@ public class TicketService {
         return eventTicketMapper.toEventTicketInfos(eventTickets);
     }
 
-    public List<EventTicketTypeInfo> getEventTicketTypes(Integer mainEventId) {
-        List<TicketType> ticketTypes = ticketTypeRepository.findTicketTypesBy(mainEventId);
-        return ticketTypeMapper.toEventTicketTypeInfos(ticketTypes);
 
-    }
 }

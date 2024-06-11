@@ -15,24 +15,18 @@ import java.util.List;
 public class TicketController {
     private final TicketService ticketService;
 
-    @PostMapping("/event/ticket")
+    @PostMapping("ticket")
     @Operation(summary = "Sündmuse toimumiskohale piletite koguse ja saadavuse lisamine.",
             description = "Andmebaasi lisatakse sündmuse toimumiskohale juurde piletikogused ja saadavused (eventDetailId abil).")
-    public void addNewTicket(@RequestBody EventTicketRequest eventTicketInfo) {
-        ticketService.addNewTicket(eventTicketInfo);
+    public void addTickets(@RequestParam Integer eventDetailId, @RequestBody EventTicketRequest eventTicketInfo) {
+        ticketService.addTickets(eventDetailId, eventTicketInfo);
     }
 
-    @GetMapping("/event/tickets")
+    @GetMapping("tickets")
     @Operation(summary = "Kõikide piletite koguste ja saadavuste toomine andmebaasist vastava sünmduse toimumiskoha kohta.",
             description = "Andmebaasist tuuakse kõik piletite kogused ja saadavus eventDetailId abil, kui nende staatus on aktiivne.")
     public List<EventTicketInfo> getEventTickets(@RequestParam Integer eventDetailId) {
         return ticketService.getEventTickets(eventDetailId);
     }
 
-    @GetMapping("/event/ticket-types")
-    @Operation(summary = "Piletitüüpide valiku loomine.",
-            description = "Tagastatakse piletitüüpide massiivi.")
-    public List<EventTicketTypeInfo> getEventTicketTypes(@RequestParam Integer mainEventId) {
-        return ticketService.getEventTicketTypes(mainEventId);
-    }
 }
