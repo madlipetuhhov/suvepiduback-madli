@@ -44,4 +44,5 @@ public interface EventDetailMapper {
     @Mapping(source = "latitude", target = "latitude")
     void updateEventDetail(EventDetailInfo eventDetailInfo, @MappingTarget EventDetail eventDetail);
 
+
 }

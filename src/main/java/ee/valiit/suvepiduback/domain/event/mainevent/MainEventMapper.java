@@ -25,11 +25,10 @@ public interface MainEventMapper {
 
     List<MainEventInfoExtended> toMainEventInfosExtended(List<MainEvent> mainEvents);
 
-    @Mapping(target = "id", source = "mainEventId")
-    @Mapping(target = "title", source = "title")
-    @Mapping(target = "description", source = "description")
+    @Mapping(source = "mainEventId", target = "id")
+    @Mapping(source = "title", target = "title")
+    @Mapping(source = "description", target = "description")
     @Mapping(expression = "java(StringConverter.stringToBytes(mainEventInfoExtended.getImageData()))", target = "imageData")
     void updateMainEvent(MainEventInfoExtended mainEventInfoExtended, @MappingTarget MainEvent mainEvent);
-
 
 }

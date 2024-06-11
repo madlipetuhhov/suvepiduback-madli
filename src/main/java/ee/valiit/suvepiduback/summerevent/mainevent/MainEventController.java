@@ -1,5 +1,6 @@
 package ee.valiit.suvepiduback.summerevent.mainevent;
 
+import ee.valiit.suvepiduback.summerevent.eventdetail.EventDetailService;
 import ee.valiit.suvepiduback.summerevent.mainevent.dto.MainEventInfo;
 import ee.valiit.suvepiduback.summerevent.mainevent.dto.MainEventInfoExtended;
 import io.swagger.v3.oas.annotations.Operation;
@@ -65,5 +66,12 @@ public class MainEventController {
         // add new method in service to delete data
         // in mainEventService.deleteMainEvent add relevant repository code
         return mainEventService.removeMainEvent(mainEventId);
+    }
+
+    @GetMapping("/event/name")
+    @Operation(summary = "Ühe sündmuse pealkirja toomine andmebaasist.",
+            description = "Andmebaasist tuuakse sündmuse pealkiri eventDetailId abil.")
+    public String getMainEventName(@RequestParam Integer eventDetailId) {
+        return mainEventService.getMainEventName(eventDetailId);
     }
 }

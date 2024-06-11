@@ -13,5 +13,4 @@ public interface MainEventRepository extends JpaRepository<MainEvent, Integer> {
     @Query("select m from MainEvent m where m.business.id = :businessId and m.status = :status order by m.title")
     List<MainEvent> findMainEventsBy(Integer businessId, String status);
 
-
 }

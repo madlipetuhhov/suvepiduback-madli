@@ -23,7 +23,7 @@ public class TicketController {
     }
 
     @GetMapping("tickets")
-    @Operation(summary = "Kõikide piletite koguste ja saadavuste toomine andmebaasist vastava sünmduse toimumiskoha kohta.",
+    @Operation(summary = "Kõikide piletite koguste ja saadavuste toomine andmebaasist vastava sündmuse toimumiskoha kohta.",
             description = "Andmebaasist tuuakse kõik piletite kogused ja saadavus eventDetailId abil, kui nende staatus on aktiivne.")
     public List<EventTicketInfo> getEventTickets(@RequestParam Integer eventDetailId) {
         return ticketService.getEventTickets(eventDetailId);

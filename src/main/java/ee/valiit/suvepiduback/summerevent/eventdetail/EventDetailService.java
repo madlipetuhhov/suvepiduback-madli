@@ -9,6 +9,7 @@ import ee.valiit.suvepiduback.domain.event.mainevent.MainEvent;
 import ee.valiit.suvepiduback.domain.event.mainevent.MainEventRepository;
 import ee.valiit.suvepiduback.summerevent.eventdetail.dto.EventDetailInfo;
 import ee.valiit.suvepiduback.summerevent.eventdetail.dto.EventDetailInfoExtended;
+import ee.valiit.suvepiduback.summerevent.mainevent.dto.MainEventInfo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

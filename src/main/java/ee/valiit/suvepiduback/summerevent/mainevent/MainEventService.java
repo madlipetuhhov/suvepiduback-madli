@@ -2,6 +2,8 @@ package ee.valiit.suvepiduback.summerevent.mainevent;
 
 import ee.valiit.suvepiduback.domain.account.business.Business;
 import ee.valiit.suvepiduback.domain.account.business.BusinessRepository;
+import ee.valiit.suvepiduback.domain.event.eventdetail.EventDetail;
+import ee.valiit.suvepiduback.domain.event.eventdetail.EventDetailRepository;
 import ee.valiit.suvepiduback.domain.event.mainevent.MainEvent;
 import ee.valiit.suvepiduback.domain.event.mainevent.MainEventMapper;
 import ee.valiit.suvepiduback.domain.event.mainevent.MainEventRepository;
@@ -19,6 +21,7 @@ public class MainEventService {
 
     private final MainEventRepository mainEventRepository;
     private final BusinessRepository businessRepository;
+    private final EventDetailRepository eventDetailRepository;
     private final MainEventMapper mainEventMapper;
 
     public Integer addNewMainEvent(Integer businessId, MainEventInfo mainEventInfo) {
@@ -51,6 +54,12 @@ public class MainEventService {
         mainEvent.setStatus(Status.DEACTIVE);
         mainEventRepository.save(mainEvent);
         return mainEventId;
+    }
+
+    public String getMainEventName(Integer eventDetailId) {
+        EventDetail eventDetail = eventDetailRepository.getReferenceById(eventDetailId);
+        MainEvent mainEvent = eventDetail.getMainEvent();
+        return mainEvent.getTitle();
     }
 }
 
