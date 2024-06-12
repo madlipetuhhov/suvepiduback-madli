@@ -15,6 +15,7 @@ public interface EventTicketMapper {
     @Mapping(constant = Status.ACTIVE, target = "status")
     EventTicket toEventTicket(EventTicketRequest eventTicketRequest);
 
+    @Mapping(source = "id", target = "eventTicketId")
     @Mapping(source = "total", target = "total")
     @Mapping(source = "available", target = "available")
     @Mapping(constant = Status.ACTIVE, target = "status")
@@ -22,5 +23,6 @@ public interface EventTicketMapper {
     EventTicketInfo toEventTicketInfo(EventTicket eventTicket);
 
     List<EventTicketInfo> toEventTicketInfos(List<EventTicket> eventTickets);
+
 
 }
