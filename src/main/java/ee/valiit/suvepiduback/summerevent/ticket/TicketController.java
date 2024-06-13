@@ -18,8 +18,8 @@ public class TicketController {
     @PostMapping("/ticket")
     @Operation(summary = "Sündmuse toimumiskohale piletite koguse ja saadavuse lisamine.",
             description = "Andmebaasi lisatakse sündmuse toimumiskohale juurde piletikogused ja saadavused (eventDetailId abil).")
-    public void addTickets(@RequestBody EventTicketRequest eventTicketInfo) {
-        ticketService.addTickets(eventTicketInfo);
+    public void addTickets(@RequestBody EventTicketRequest eventTicketRequest) {
+        ticketService.addTickets(eventTicketRequest);
     }
 
     @GetMapping("/ticket")
