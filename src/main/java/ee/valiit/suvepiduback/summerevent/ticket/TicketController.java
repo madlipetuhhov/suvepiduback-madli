@@ -39,8 +39,8 @@ public class TicketController {
     @PutMapping("/ticket")
     @Operation(summary = "Olemasoleva pileti tüübi andmete muutmine.",
             description = "Andmebaasis kirjutatakse üle olemasoleva pileti tüübi andmed.")
-    public void editEventTicket(@RequestBody TicketTypeInfo ticketTypeInfo) {
-        ticketService.editEventTicket(ticketTypeInfo);
+    public void editEventTicket(@RequestBody EventTicketInfo eventTicketInfo) {
+        ticketService.editEventTicket(eventTicketInfo);
     }
 
 }
