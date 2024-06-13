@@ -2,6 +2,7 @@ package ee.valiit.suvepiduback.summerevent.ticket;
 
 import ee.valiit.suvepiduback.summerevent.ticket.dto.EventTicketInfo;
 import ee.valiit.suvepiduback.summerevent.ticket.dto.EventTicketRequest;
+import ee.valiit.suvepiduback.summerevent.tickettype.dto.TicketTypeInfo;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -14,11 +15,11 @@ import java.util.List;
 public class TicketController {
     private final TicketService ticketService;
 
-    @PostMapping("ticket")
+    @PostMapping("/ticket")
     @Operation(summary = "Sündmuse toimumiskohale piletite koguse ja saadavuse lisamine.",
             description = "Andmebaasi lisatakse sündmuse toimumiskohale juurde piletikogused ja saadavused (eventDetailId abil).")
-    public void addTickets(@RequestParam Integer eventDetailId, @RequestBody EventTicketRequest eventTicketInfo) {
-        ticketService.addTickets(eventDetailId, eventTicketInfo);
+    public void addTickets(@RequestBody EventTicketRequest eventTicketInfo) {
+        ticketService.addTickets(eventTicketInfo);
     }
 
     @GetMapping("/ticket")
@@ -28,18 +29,18 @@ public class TicketController {
         return ticketService.getEventTicket(eventTicketId);
     }
 
-    @GetMapping("tickets")
+    @GetMapping("/tickets")
     @Operation(summary = "Kõikide piletite koguste ja saadavuste toomine andmebaasist vastava sündmuse toimumiskoha kohta.",
             description = "Andmebaasist tuuakse kõik piletite kogused ja saadavus eventDetailId abil, kui nende staatus on aktiivne.")
     public List<EventTicketInfo> getEventTickets(@RequestParam Integer eventDetailId) {
         return ticketService.getEventTickets(eventDetailId);
     }
 
-//    @PutMapping("/ticket")
-//    @Operation(summary = "Olemasoleva sündmusesarja ühe sündmuse piletite koguse muutmine.",
-//            description = "Andmebaasis kirjutatakse üle olemasoleva sündmusesarja ühe sündmuse piletite koguse andmed eventTicketId abil.")
-//    public void editEventTicket(@RequestBody EventTicketRequestExtended eventTicketRequestExtended) {
-//        ticketService.editEventTicket(eventTicketRequestExtended);
-//    }
+    @PutMapping("/ticket")
+    @Operation(summary = "Olemasoleva pileti tüübi andmete muutmine.",
+            description = "Andmebaasis kirjutatakse üle olemasoleva pileti tüübi andmed.")
+    public void editEventTicket(@RequestBody TicketTypeInfo ticketTypeInfo) {
+        ticketService.editEventTicket(ticketTypeInfo);
+    }
 
 }

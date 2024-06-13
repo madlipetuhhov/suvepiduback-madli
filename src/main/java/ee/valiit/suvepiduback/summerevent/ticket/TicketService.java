@@ -9,6 +9,7 @@ import ee.valiit.suvepiduback.domain.ticket.tickettype.TicketType;
 import ee.valiit.suvepiduback.domain.ticket.tickettype.TicketTypeRepository;
 import ee.valiit.suvepiduback.summerevent.ticket.dto.EventTicketInfo;
 import ee.valiit.suvepiduback.summerevent.ticket.dto.EventTicketRequest;
+import ee.valiit.suvepiduback.summerevent.tickettype.dto.TicketTypeInfo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -25,8 +26,8 @@ public class TicketService {
     private final EventTicketMapper eventTicketMapper;
 
 
-    public void addTickets(Integer eventDetailId, EventTicketRequest eventTicketRequest) {
-        EventDetail eventDetail = eventDetailRepository.getReferenceById(eventDetailId);
+    public void addTickets(EventTicketRequest eventTicketRequest) {
+        EventDetail eventDetail = eventDetailRepository.getReferenceById(eventTicketRequest.getEventDetailId());
         TicketType ticketType = ticketTypeRepository.getReferenceById(eventTicketRequest.getTicketTypeId());
         EventTicket eventTicket = eventTicketMapper.toEventTicket(eventTicketRequest);
         eventTicket.setEventDetail(eventDetail);
@@ -45,4 +46,7 @@ public class TicketService {
     }
 
 
+    public void editEventTicket(TicketTypeInfo ticketTypeInfo) {
+
+    }
 }
