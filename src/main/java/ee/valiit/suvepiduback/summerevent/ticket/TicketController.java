@@ -18,7 +18,7 @@ public class TicketController {
     @Operation(summary = "Sündmuse toimumiskohale piletite koguse ja saadavuse lisamine.",
             description = "Andmebaasi lisatakse sündmuse toimumiskohale juurde piletikogused ja saadavused (eventDetailId abil).")
     public void addTickets(@RequestBody EventTicketRequest eventTicketRequest) {
-        ticketService.addTickets(eventTicketRequest);
+        ticketService.addEventTickets(eventTicketRequest);
     }
 
     @GetMapping("/ticket")
@@ -40,6 +40,13 @@ public class TicketController {
             description = "Andmebaasis kirjutatakse üle olemasoleva pileti tüübi andmed.")
     public void editEventTicket(@RequestBody EventTicketInfo eventTicketInfo) {
         ticketService.editEventTicket(eventTicketInfo);
+    }
+
+    @DeleteMapping("/ticket")
+    @Operation(summary = "Olemasoleva pileti eemaldamine.",
+            description = "Andmebaasist reaalselt piletit ei eemaldata, vaid deaktiveeritakse.")
+    public Integer removeEventTicket(@RequestParam Integer eventTicketId) {
+        return ticketService.removeEventTicket(eventTicketId);
     }
 
 }

@@ -8,10 +8,10 @@ import java.util.List;
 
 public interface EventTicketRepository extends JpaRepository<EventTicket, Integer> {
 
-    @Query("select e from EventTicket e where e.eventDetail.id = :eventDetailId order by e.ticketType.price DESC")
-    List<EventTicket> findEventTicketsBy(Integer eventDetailId);
 
-    @Query("select e from EventTicket e where e.eventDetail.id = :eventDetailId order by e.ticketType.price DESC")
-    EventTicket findEventTicketBy(Integer eventDetailId);
-
+    @Query("""
+            select e from EventTicket e
+            where e.eventDetail.id = :eventDetailId and e.status = :status
+            order by e.ticketType.price DESC""")
+    List<EventTicket> findEventTicketsBy(Integer eventDetailId, String status);
 }
