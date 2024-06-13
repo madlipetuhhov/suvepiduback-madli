@@ -45,7 +45,9 @@ public class TicketService {
     }
 
 
-    public void editEventTicket(EventTicketInfo ticketTypeInfo) {
-
+    public void editEventTicket(EventTicketInfo eventTicketInfo) {
+        EventTicket eventTicket = eventTicketRepository.getReferenceById(eventTicketInfo.getEventTicketId());
+        eventTicketMapper.updateEventTicket(eventTicketInfo, eventTicket);
+        eventTicketRepository.save(eventTicket);
     }
 }

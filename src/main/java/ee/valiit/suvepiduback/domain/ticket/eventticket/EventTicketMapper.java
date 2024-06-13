@@ -26,5 +26,10 @@ public interface EventTicketMapper {
 
     List<EventTicketInfo> toEventTicketInfos(List<EventTicket> eventTickets);
 
-
+    @Mapping(source = "eventTicketId", target = "id")
+    @Mapping(source = "ticketTypeName", target = "ticketType.name")
+    @Mapping(source = "total", target = "total")
+    @Mapping(source = "available", target = "available")
+    @Mapping(constant = Status.ACTIVE, target = "status")
+    void updateEventTicket(EventTicketInfo eventTicketInfo, @MappingTarget EventTicket eventTicket);
 }
