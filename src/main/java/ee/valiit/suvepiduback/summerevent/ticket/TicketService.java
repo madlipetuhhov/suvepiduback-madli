@@ -25,9 +25,8 @@ public class TicketService {
     private final EventTicketRepository eventTicketRepository;
     private final EventTicketMapper eventTicketMapper;
 
-
-    public void addEventTickets(EventTicketRequest eventTicketRequest) {
-        EventDetail eventDetail = eventDetailRepository.getReferenceById(eventTicketRequest.getEventDetailId());
+    public void addEventTickets(Integer eventDetailId, EventTicketRequest eventTicketRequest) {
+        EventDetail eventDetail = eventDetailRepository.getReferenceById(eventDetailId);
         TicketType ticketType = ticketTypeRepository.getReferenceById(eventTicketRequest.getTicketTypeId());
         EventTicket eventTicket = eventTicketMapper.toEventTicket(eventTicketRequest);
         eventTicket.setEventDetail(eventDetail);

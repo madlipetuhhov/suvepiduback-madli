@@ -15,9 +15,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EventTicketRequest implements Serializable {
-    private Integer eventDetailId;
+//    private Integer eventDetailId;
     private Integer ticketTypeId;
     private Integer total;
-
-
 }

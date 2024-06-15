@@ -13,7 +13,7 @@ public interface EventTicketMapper {
     @Mapping(source = "ticketTypeId", target = "id")
     @Mapping(source = "total", target = "total")
     @Mapping(source = "total", target = "available")
-    @Mapping(source = "eventDetailId", target = "eventDetail.id")
+//    @Mapping(source = "eventDetailId", target = "eventDetail.id")
     @Mapping(constant = Status.ACTIVE, target = "status")
     EventTicket toEventTicket(EventTicketRequest eventTicketRequest);
 
