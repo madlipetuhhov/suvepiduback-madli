@@ -1,7 +1,6 @@
 package ee.valiit.suvepiduback.summerevent.ticket.dto;
 
 import ee.valiit.suvepiduback.domain.ticket.eventticket.EventTicket;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
