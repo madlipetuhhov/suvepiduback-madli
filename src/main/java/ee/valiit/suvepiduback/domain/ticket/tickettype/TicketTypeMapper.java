@@ -1,6 +1,6 @@
 package ee.valiit.suvepiduback.domain.ticket.tickettype;
 
-import ee.valiit.suvepiduback.summerevent.ticket.dto.EventTicketTypeInfo;
+import ee.valiit.suvepiduback.summerevent.tickettype.dto.EventTicketTypeInfo;
 import ee.valiit.suvepiduback.summerevent.tickettype.dto.TicketTypeInfo;
 import ee.valiit.suvepiduback.summerevent.tickettype.dto.TicketTypeInfoExtended;
 import org.mapstruct.*;

@@ -1,4 +1,4 @@
-package ee.valiit.suvepiduback.summerevent.ticket.dto;
+package ee.valiit.suvepiduback.summerevent.tickettype.dto;
 
 import ee.valiit.suvepiduback.domain.ticket.tickettype.TicketType;
 import lombok.Getter;

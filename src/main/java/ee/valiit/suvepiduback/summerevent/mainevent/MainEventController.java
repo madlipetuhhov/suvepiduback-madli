@@ -73,4 +73,6 @@ public class MainEventController {
     public String getMainEventName(@RequestParam Integer eventDetailId) {
         return mainEventService.getMainEventName(eventDetailId);
     }
+
+
 }
