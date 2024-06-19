@@ -55,11 +55,6 @@ The backend provides a REST API to interact with the PostgreSQL database.
 You can test the endpoints using tools like Swagger.
 NB! Mul Swagger avaneb automaatsel, kui server käima panna. Kas siis ka teistel avaneb nii või see eraldi seadistus?
 
-## Contact
-If you want to contact me, you can reach me at madli.petuhhov89@gmail.com.
-
-Thank you for your understanding and support as I continue to develop and refine the Suvepidu project.
-
 _________
 Kas see kopida helpist siia? See ise genereerunud fail, kas see sisi genereerub iga kord uuesti?
 # Getting Started
