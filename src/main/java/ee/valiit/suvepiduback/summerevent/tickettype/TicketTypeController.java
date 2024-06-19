@@ -30,8 +30,8 @@ public class TicketTypeController {
     @GetMapping("ticket-types")
     @Operation(summary = "Kõikide pileti tüüpide andmebaasist toomine vastava sündmuse kohta.",
             description = "Andmebaasist tuuakse vastava sündmuse kõik piletitüübid eventDetailId abil. Tagastab piletitüüpide massiivi.")
-    public List<TicketTypeInfoExtended> getTicketTypes(@RequestParam Integer eventDetailId) {
-        return ticketTypeService.getTicketTypes(eventDetailId);
+    public List<TicketTypeInfoExtended> getTicketTypes(@RequestParam Integer mainEventId) {
+        return ticketTypeService.getTicketTypes(mainEventId);
     }
 
     @PutMapping("ticket-type")

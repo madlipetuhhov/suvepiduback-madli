@@ -34,9 +34,8 @@ public class TicketTypeService {
         return ticketTypeMapper.toTicketTypeInfoExtended(ticketType);
     }
 
-    public List<TicketTypeInfoExtended> getTicketTypes(Integer eventDetailId) {
-        EventDetail eventDetail = eventDetailRepository.getReferenceById(eventDetailId);
-        MainEvent mainEvent = eventDetail.getMainEvent();
+    public List<TicketTypeInfoExtended> getTicketTypes(Integer mainEventId) {
+        MainEvent mainEvent = mainEventRepository.getReferenceById(mainEventId);
         List<TicketType> ticketTypes = ticketTypeRepository.findTicketTypesBy(mainEvent.getId());
         return ticketTypeMapper.toTicketTypeInfosExtended(ticketTypes);
     }
