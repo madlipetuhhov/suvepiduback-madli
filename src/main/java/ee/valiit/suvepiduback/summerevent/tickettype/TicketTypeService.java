@@ -1,6 +1,5 @@
 package ee.valiit.suvepiduback.summerevent.tickettype;
 
-import ee.valiit.suvepiduback.domain.event.eventdetail.EventDetailRepository;
 import ee.valiit.suvepiduback.domain.event.mainevent.MainEvent;
 import ee.valiit.suvepiduback.domain.event.mainevent.MainEventRepository;
 import ee.valiit.suvepiduback.domain.ticket.tickettype.TicketType;
