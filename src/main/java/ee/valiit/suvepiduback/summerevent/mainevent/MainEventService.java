@@ -42,6 +42,11 @@ public class MainEventService {
         return mainEventMapper.toMainEventInfosExtended(mainEvents);
     }
 
+    public String getMainEventName(Integer eventDetailId) {
+        EventDetail eventDetail = eventDetailRepository.getReferenceById(eventDetailId);
+        MainEvent mainEvent = eventDetail.getMainEvent();
+        return mainEvent.getTitle();
+    }
 
     public void editMainEvent(MainEventInfoExtended mainEventInfoExtended) {
         MainEvent mainEvent = mainEventRepository.getReferenceById(mainEventInfoExtended.getMainEventId());
@@ -54,12 +59,6 @@ public class MainEventService {
         mainEvent.setStatus(Status.DEACTIVE);
         mainEventRepository.save(mainEvent);
         return mainEventId;
-    }
-
-    public String getMainEventName(Integer eventDetailId) {
-        EventDetail eventDetail = eventDetailRepository.getReferenceById(eventDetailId);
-        MainEvent mainEvent = eventDetail.getMainEvent();
-        return mainEvent.getTitle();
     }
 }
 

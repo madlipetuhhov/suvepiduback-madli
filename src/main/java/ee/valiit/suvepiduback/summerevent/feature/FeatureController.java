@@ -14,8 +14,8 @@ public class FeatureController {
     private final FeatureService featureService;
 
     @GetMapping("/features")
-    @Operation(summary = "Creating a selection of features.",
-            description = "Returns an array of features.")
+    @Operation(summary = "Create a an array of features.",
+            description = "Creates an array of features. Returns an array of features.")
     public List<FeatureInfo> executeFeaturesList() {
         return featureService.executeFeaturesList();
     }

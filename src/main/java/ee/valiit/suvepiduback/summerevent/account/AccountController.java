@@ -15,15 +15,15 @@ public class AccountController {
     private final AccountService accountService;
 
     @PostMapping("/account/user")
-    @Operation(summary = "Adding a new user account.",
-            description = "A new user account is added to the database.")
+    @Operation(summary = "Create a new user account.",
+            description = "Creates a new user account in the database using the provided user object (JSON payload).")
     public void addNewUser(@RequestBody @Valid UserInfo userInfo) {
         accountService.addNewUser(userInfo);
     }
 
     @PostMapping("/account/business")
-    @Operation(summary = "Adding a new business to user account.",
-            description = "A new business account is added to the database to user account.")
+    @Operation(summary = "Create a new business account.",
+            description = "Creates a new business account in the database using the provided business object (JSON payload).")
     public void addNewBusiness(@RequestBody BusinessInfo businessInfo) {
         accountService.addNewBusiness(businessInfo);
     }

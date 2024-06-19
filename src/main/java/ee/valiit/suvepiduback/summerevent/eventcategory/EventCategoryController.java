@@ -14,29 +14,29 @@ public class EventCategoryController {
     private final EventCategoryService eventCategoryService;
 
     @PostMapping("/event/categories")
-    @Operation(summary = "Adding categories to the event.",
-            description = "Categories are added to the database for the event using mainEventId.")
+    @Operation(summary = "Create categories to the event by mainEventId.",
+            description = "Creates categories in the database for the event using mainEventId (query parameter) and an array of categories (JSON payload).")
     public void updateCategories(@RequestParam Integer mainEventId, @RequestBody List<CategoryInfo> categoryInfos) {
         eventCategoryService.updateCategories(mainEventId, categoryInfos);
     }
 
     @GetMapping("/event/categories")
-    @Operation(summary = "Retrieving all selected categories from the database for the event.",
-            description = "All categories of the event are fetched from the database using mainEventId to display in a table.")
+    @Operation(summary = "Retrieve an array of selected categories by mainEventId.",
+            description = "Retrieves an array of selected categories of the event from the database using mainEventId (query parameter). Returns an array of selected categories.")
     public List<EventCategoryInfo> getEventCategoriesForView(@RequestParam Integer mainEventId) {
         return eventCategoryService.getEventCategoriesForView(mainEventId);
     }
 
     @GetMapping("/event/categories-modal")
-    @Operation(summary = "Retrieving all selected categories from the database for the event.",
-            description = "All selected categories of the event are fetched from the database using mainEventId to display in the modal.")
+    @Operation(summary = "Retrieve an array of selected categories by mainEventId for modal.",
+            description = "Retrieves an array of selected categories of the event from the database using mainEventId (query parameter). Returns an array of selected categories.")
     public List<CategoryInfo> getEventCategoriesForModal(@RequestParam Integer mainEventId) {
         return eventCategoryService.getEventCategoriesForModal(mainEventId);
     }
 
     @PutMapping("/event/categories-modal")
-    @Operation(summary = "Modify existing categories data.",
-            description = "In the database, the categories data of the existing event is overwritten using mainEventId.")
+    @Operation(summary = "Update event categories.",
+            description = "Updates an existing event categories in the database using mainEventId (query parameter) and an array of categories (JSON payload).")
     public void editEventCategories(@RequestParam Integer mainEventId, @RequestBody List<CategoryInfo> categoryInfos) {
         eventCategoryService.editEventCategories(mainEventId, categoryInfos);
     }

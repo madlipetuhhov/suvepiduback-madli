@@ -14,29 +14,29 @@ public class EventFeatureController {
     private final EventFeatureService eventFeatureService;
 
     @PostMapping("/event/features")
-    @Operation(summary = "Adding features to the event.",
-            description = "Features are added to the database for the event using mainEventId.")
+    @Operation(summary = "Create features to the event by mainEventId.",
+            description = "Creates features in the database for the event using mainEventId (query parameter) and an array of features (JSON payload).")
     public void updateFeatures(@RequestParam Integer mainEventId, @RequestBody List<FeatureInfo> featureInfos) {
         eventFeatureService.updateFeatures(mainEventId, featureInfos);
     }
 
     @GetMapping("/event/features")
-    @Operation(summary = "Retrieving all selected features from the database for the event.",
-            description = "All features of the event are fetched from the database using mainEventId to display in a table.")
+    @Operation(summary = "Retrieve an array of selected features by mainEventId.",
+            description = "Retrieves an array of selected features of the event from the database using mainEventId (query parameter). Returns an array of selected features.")
     public List<EventFeatureInfo> getEventFeaturesForView(@RequestParam Integer mainEventId) {
         return eventFeatureService.getEventFeaturesForView(mainEventId);
     }
 
     @GetMapping("/event/features-modal")
-    @Operation(summary = "Retrieving all selected features from the database for the event.",
-            description = "All selected features of the event are fetched from the database using mainEventId to display in the modal.")
+    @Operation(summary = "Retrieve an array of selected features by mainEventId for modal.",
+            description = "Retrieves an array of selected features of the event from the database using mainEventId (query parameter). Returns an array of selected features.")
     public List<FeatureInfo> getEventFeaturesForModal(@RequestParam Integer mainEventId) {
         return eventFeatureService.getEventFeaturesForModal(mainEventId);
     }
 
     @PutMapping("/event/features-modal")
-    @Operation(summary = "Modify existing features data.",
-            description = "In the database, the features data of the existing event is overwritten using mainEventId.")
+    @Operation(summary = "Update event features.",
+            description = "Updates an existing event features in the database using mainEventId (query parameter) and an array of features (JSON payload).")
     public void editEventFeatures(@RequestParam Integer mainEventId, @RequestBody List<FeatureInfo> featureInfos) {
         eventFeatureService.editEventFeatures(mainEventId, featureInfos);
     }

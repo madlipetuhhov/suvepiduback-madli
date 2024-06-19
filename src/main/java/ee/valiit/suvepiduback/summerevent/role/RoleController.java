@@ -14,8 +14,8 @@ public class RoleController {
     private final RoleService roleService;
 
     @GetMapping("/roles")
-    @Operation(summary = "Rollide valiku loomine.",
-            description = "Süsteemist otsitakse roleId abil rollid, tagastab rollide massiivi.")
+    @Operation(summary = "Retrieve an array of roles.",
+            description = "Retrieves an array of roles from the database. Returns an array of roles.")
     public List<RolesDropdownInfo> executeRolesDropdown() {
         return roleService.executeRolesDropdown();
     }

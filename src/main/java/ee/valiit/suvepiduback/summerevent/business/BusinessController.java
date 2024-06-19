@@ -14,8 +14,8 @@ import java.util.List;
 public class BusinessController {
     private final BusinessService businessService;
     @GetMapping("/businesses")
-    @Operation(summary = "Creating a selection of companies for the respective organizer account.",
-            description = "Returns an array of companies based on the userId.")
+    @Operation(summary = "Create an array of businesses by userId.",
+            description = "Creates an array of businesses based on the userId (query parameter). Returns an array of businesses.")
     public List<BusinessesDropdownInfo> executeBusinessesDropdown(@RequestParam Integer userId) {
         return businessService.executeBusinessesDropdown(userId);
     }

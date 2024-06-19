@@ -14,29 +14,29 @@ public class TicketTypeController {
     private final TicketTypeService ticketTypeService;
 
     @PostMapping("ticket-type")
-    @Operation(summary = "Sündmusele piletitüübi ja selle hinna lisamine.",
-            description = "Andmebaasi lisatakse sündmusele juurde piletitüübid ja nende hinnad mainEventId abil.")
+    @Operation(summary = "Create a new ticket type by mainEventId.",
+            description = "Creates a new ticket type in the database using the provided ticket type object (JSON payload) and mainEventId (query parameter).")
     public void addNewTicketTypes(@RequestParam Integer mainEventId, @RequestBody TicketTypeInfo ticketTypeInfo) {
         ticketTypeService.addNewTicketTypes(mainEventId, ticketTypeInfo);
     }
 
     @GetMapping("ticket-type")
-    @Operation(summary = "Ühe pileti tüübi toomine andmebaasist.",
-            description = "Andmebaasist tuuakse üks pileti tüüp ticketTypeId abil.")
+    @Operation(summary = "Retrieve a ticket type by ticketTypeId.",
+            description = "Retrieves a ticket type from the database based on the ticketTypeId (query parameter). Returns JSON containing ticket type info.")
     public TicketTypeInfoExtended getTicketType(@RequestParam Integer ticketTypeId) {
         return ticketTypeService.getTicketType(ticketTypeId);
     }
 
     @GetMapping("ticket-types")
-    @Operation(summary = "Kõikide pileti tüüpide andmebaasist toomine vastava sündmuse kohta.",
-            description = "Andmebaasist tuuakse vastava sündmuse kõik piletitüübid eventDetailId abil. Tagastab piletitüüpide massiivi.")
+    @Operation(summary = "Retrieve an array of ticket types by mainEventId.",
+            description = "Retrieves an array of ticket types from the database based on the mainEventId (query parameter). Returns an array of ticket types.")
     public List<TicketTypeInfoExtended> getTicketTypes(@RequestParam Integer mainEventId) {
         return ticketTypeService.getTicketTypes(mainEventId);
     }
 
     @PutMapping("ticket-type")
-    @Operation(summary = "Olemasoleva pileti tüübi andmete muutmine.",
-            description = "Andmebaasis kirjutatakse üle olemasoleva pileti tüübi andmed.")
+    @Operation(summary = "Update an ticket type.",
+            description = "Updates an existing ticket type in the database based on the provided ticket type object (JSON payload).")
     public void editTicketType(@RequestBody TicketTypeInfoExtended ticketTypeInfoExtended) {
         ticketTypeService.editTicketType(ticketTypeInfoExtended);
     }

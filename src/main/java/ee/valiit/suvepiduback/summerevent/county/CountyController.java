@@ -15,8 +15,8 @@ public class CountyController {
     private final CountyService countyService;
 
     @GetMapping("/counties")
-    @Operation(summary = "Creating the counties option for the dropdown menu.",
-            description = "Returns an array of counties.")
+    @Operation(summary = "Create a an array of counties.",
+            description = "Creates an array of counties. Returns an array of counties.")
     public List<CountyInfo> executeCountyList() {
         return countyService.executeCountyList();
     }

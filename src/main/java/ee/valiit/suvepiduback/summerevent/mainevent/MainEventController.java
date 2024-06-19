@@ -34,6 +34,13 @@ public class MainEventController {
         return mainEventService.getMainEvents(businessId);
     }
 
+    @GetMapping("/event/name")
+    @Operation(summary = "Retrieve an event title by eventDetailId.",
+            description = "Retrieves an event title from the database based on the eventDetailId (query parameter). Returns event title as String.")
+    public String getMainEventName(@RequestParam Integer eventDetailId) {
+        return mainEventService.getMainEventName(eventDetailId);
+    }
+
     @PutMapping("/event/main")
     @Operation(summary = "Update an event.",
             description = "Updates an existing event in the database based on the provided event object (JSON payload).")
@@ -47,13 +54,4 @@ public class MainEventController {
     public Integer removeMainEvent(@RequestParam Integer mainEventId) {
         return mainEventService.removeMainEvent(mainEventId);
     }
-
-    @GetMapping("/event/name")
-    @Operation(summary = "Retrieve an event title by eventDetailId.",
-            description = "Retrieves an event title from the database based on the eventDetailId (query parameter). Returns event title as String.")
-    public String getMainEventName(@RequestParam Integer eventDetailId) {
-        return mainEventService.getMainEventName(eventDetailId);
-    }
-
-
 }
