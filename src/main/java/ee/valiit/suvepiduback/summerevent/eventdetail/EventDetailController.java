@@ -15,29 +15,29 @@ public class EventDetailController {
     private final EventDetailService eventDetailService;
 
     @PostMapping("/event/detail")
-    @Operation(summary = "Uuele sündmusesarjale toimumiskohta info lisamine.",
-            description = "Lisatakse sündmusesarjale juurde toimumiskoha info mainEventId abil. Tagastab eventDetailId.")
+    @Operation(summary = "Adding event location information to a new event series.",
+            description = "Adding event location information to the event series using mainEventId. Returns eventDetailId.")
     public Integer addEventDetail(@RequestParam Integer mainEventId, @RequestBody EventDetailInfo eventDetailInfo) {
         return eventDetailService.addEventDetail(mainEventId, eventDetailInfo);
     }
 
     @GetMapping("/event/detail")
-    @Operation(summary = "Sündmusesarja ühe toimumiskoha toomine andmebaasist.",
-            description = "Andmebaasist tuuakse sündmusesarja ühe toimumiskoha info eventDetailId abil")
+    @Operation(summary = "Retrieving one location of the event series from the database.",
+            description = "The information of one location of the event series is retrieved from the database using eventDetailId.")
     public EventDetailInfo getEventDetail(@RequestParam Integer eventDetailId) {
         return eventDetailService.getEventDetail(eventDetailId);
     }
 
     @GetMapping("/event/details")
-    @Operation(summary = "Sündmustesarja kõikide toimumiskohtade toomine andmebaasist.",
-            description = "Andmebaasist tuuakse vastava sündmusesarja kõik toimumiskohad mainEventId abil")
+    @Operation(summary = "Retrieving all locations of a series of events from the database.",
+            description = "All event locations of the corresponding event series are fetched from the database using mainEventId.")
     public List<EventDetailInfoExtended> getEventDetails(@RequestParam Integer mainEventId) {
         return eventDetailService.getEventDetails(mainEventId);
     }
 
     @PutMapping("/event/detail")
-    @Operation(summary = "Olemasoleva sündmusesarja toimumiskoha andmete muutmine.",
-            description = "Andmebaasis kirjutatakse üle olemasoleva sündmusesarja toimumiskoha andmed eventDetailId abil.")
+    @Operation(summary = "Change event location data for an existing event series.",
+            description = "In the database, the event location data of the existing event series is overwritten using eventDetailId.")
     public void editEventDetail(@RequestParam Integer eventDetailId, @RequestBody EventDetailInfo eventDetailInfo) {
         eventDetailService.editEventDetail(eventDetailId, eventDetailInfo);
     }

@@ -18,19 +18,16 @@ public class LoginController {
     private final LoginService loginService;
 
     @GetMapping("/login")
-    @Operation(summary = "Sisse logimine. Tagastab userId ja roleName",
+    @Operation(summary = "Login. Returns userId and roleName.",
             description = """
-                    Süsteemist otsitakse username ja password abil kasutajat, kelle konto on ka aktiivne. 
-                    Kui vastet ei leita vistakse viga errorCode'ga 111""")
+                    The system searches for a user whose account is also active using username and password.
+                    If no match is found, an error with errorCode 111""")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = " meie OK"),
-            @ApiResponse(responseCode = "403", description = "Vale kasutajanimi või parool",
+            @ApiResponse(responseCode = "200", description = "OK"),
+            @ApiResponse(responseCode = "403", description = "Invalid username or password",
                     content = @Content(schema = @Schema(implementation = ApiError.class)))
     })
-
     public LoginResponse login(@RequestParam String username, @RequestParam String password) {
-        LoginResponse loginResponse = loginService.login(username, password);
-        return loginResponse;
+        return loginService.login(username, password);
     }
-
 }

@@ -14,62 +14,43 @@ public class MainEventController {
     private final MainEventService mainEventService;
 
     @PostMapping("/event/main")
-    @Operation(summary = "Uue sündmuse lisamine.",
-            description = "Andmebaasi lisatakse uus sündmus. Tagastab mainEventId ")
+    @Operation(summary = "Create a new event by businessId.",
+            description = "Creates a new event in the database using the provided event object (JSON payload) and businessId (query parameter). Returns mainEventId.")
     public Integer addNewMainEvent(@RequestParam Integer businessId, @RequestBody MainEventInfo mainEventInfo) {
-        // siin nt NewMainEventInfo DTO ilma ID-ta
-//        tagastab mainEventId, et navigeerida frondis featureCategoryRoutile
         return mainEventService.addNewMainEvent(businessId, mainEventInfo);
     }
 
-    // siin tagastad DTO objekti, millel on ID küljes
     @GetMapping("/event/main")
-    @Operation(summary = "Ühe sündmuse toomine andmebaasist.",
-            description = "Andmebaasist tuuakse üks sündmus mainEventId abil, kui selle staatus on aktiivne.")
+    @Operation(summary = "Retrieve an event by mainEventId.",
+            description = "Retrieves an event from the database based on the mainEventId (query parameter) and checks for active status. Returns JSON containing event info.")
     public MainEventInfoExtended getMainEvent(@RequestParam Integer mainEventId) {
-        // get MainEventInfo object by ID
-        // add new method in service to get data
-        // in mainEventService.getMainEvent add relevant repository code
         return mainEventService.getMainEvent(mainEventId);
     }
 
-    // siin tagastad DTO objekti listi objektidest, millel on ID-d küljes
     @GetMapping("/events/main")
-    @Operation(summary = "Kõikide sündmuste toomine andmebaasist vastava korraldaja konto kohta.",
-            description = "Andmebaasist tuuakse vastava ettevõtte kõik aktiivse staatusega sündmused businessId abil.")
+    @Operation(summary = "Retrieve an array of events by businessId.",
+            description = "Retrieves an array of events from the database based on the businessId (query parameter) and checks for active status. Returns an array of events.")
     public List<MainEventInfoExtended> getMainEvents(@RequestParam Integer businessId) {
-        // get list of MainEventInfo objects by business ID to only show relevant events
-        // add new method in service to get data
-        // in mainEventService.getMainEvents add relevant repository code
         return mainEventService.getMainEvents(businessId);
     }
 
-    // siin tagastad uuendatud DTO objekti , millel on ID küljes (UPD:  bank33back pealt vaadates, et ei pea tagastama)
     @PutMapping("/event/main")
-    @Operation(summary = "Olemasoleva sündmuse andmete muutmine.",
-            description = "Andmebaasis kirjutatakse üle olemasoleva sündmuse andmed.")
+    @Operation(summary = "Update an event.",
+            description = "Updates an existing event in the database based on the provided event object (JSON payload).")
     public void editMainEvent(@RequestBody MainEventInfoExtended mainEventInfoExtended) {
-        // siin nt UpdateMainEventInfo DTO koos ID-ga
-        // update MainEventInfo object
-        // add new method in service to update data
-        // in mainEventService.updateMainEvent add relevant repository code
         mainEventService.editMainEvent(mainEventInfoExtended);
     }
 
-    // siin tagastad kustutatud objekti ID, aga ainult selleks, et kontrollida frontendis kas see õnnestus
     @DeleteMapping("/event/main")
-    @Operation(summary = "Olemasoleva sündmuse eemaldamine.",
-            description = "Andmebaasist reaalselt sündmust ei eemaldata, vaid deaktiveeritakse.")
+    @Operation(summary = "Delete an event by mainEventId.",
+            description = "The event is not deleted from the database but deactivated based on the mainEventId (query parameter). Returns mainEventId as Integer.")
     public Integer removeMainEvent(@RequestParam Integer mainEventId) {
-        // delete MainEventInfo by ID
-        // add new method in service to delete data
-        // in mainEventService.deleteMainEvent add relevant repository code
         return mainEventService.removeMainEvent(mainEventId);
     }
 
     @GetMapping("/event/name")
-    @Operation(summary = "Ühe sündmuse pealkirja toomine andmebaasist.",
-            description = "Andmebaasist tuuakse sündmuse pealkiri eventDetailId abil.")
+    @Operation(summary = "Retrieve an event title by eventDetailId.",
+            description = "Retrieves an event title from the database based on the eventDetailId (query parameter). Returns event title as String.")
     public String getMainEventName(@RequestParam Integer eventDetailId) {
         return mainEventService.getMainEventName(eventDetailId);
     }

@@ -14,8 +14,8 @@ public class CategoryController {
     private final CategoryService categoryService;
 
     @GetMapping("/categories")
-    @Operation(summary = "Kategooriate valiku loomine.",
-            description = "Tagastab kategooriate massiivi.")
+    @Operation(summary = "Creating a selection of categories.",
+            description = "Returns an array of categories.")
     public List<CategoryInfo> executeCategoriesList() {
         return categoryService.executeCategoriesList();
     }

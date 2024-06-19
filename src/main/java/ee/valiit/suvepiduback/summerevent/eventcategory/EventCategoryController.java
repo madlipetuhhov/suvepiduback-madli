@@ -13,31 +13,30 @@ import java.util.List;
 public class EventCategoryController {
     private final EventCategoryService eventCategoryService;
 
-    //    post meetod ei ole frondis kasutusel, put meetodi abil toimub muutmine
     @PostMapping("/event/categories")
-    @Operation(summary = "Sündmusele kategooriate lisamine.",
-            description = "Andmebaasi lisatakse sündmusele juurde kategooriad mainEventId abil.")
+    @Operation(summary = "Adding categories to the event.",
+            description = "Categories are added to the database for the event using mainEventId.")
     public void updateCategories(@RequestParam Integer mainEventId, @RequestBody List<CategoryInfo> categoryInfos) {
         eventCategoryService.updateCategories(mainEventId, categoryInfos);
     }
 
     @GetMapping("/event/categories")
-    @Operation(summary = "Kõikide valitud kategooriate andmebaasist toomine vastava sündmuse kohta tabelis kuvamiseks.",
-            description = "Andmebaasist tuuakse vastava sündmuse kõik kategooriad mainEventId abil.")
+    @Operation(summary = "Retrieving all selected categories from the database for the event.",
+            description = "All categories of the event are fetched from the database using mainEventId to display in a table.")
     public List<EventCategoryInfo> getEventCategoriesForView(@RequestParam Integer mainEventId) {
         return eventCategoryService.getEventCategoriesForView(mainEventId);
     }
 
     @GetMapping("/event/categories-modal")
-    @Operation(summary = "Kõikide valitud kategooriate andmebaasist toomine vastava sündmuse kohta modalis kuvamiseks.",
-            description = "Andmebaasist tuuakse vastava sündmuse kõik kategooriad mainEventId abil.")
+    @Operation(summary = "Retrieving all selected categories from the database for the event.",
+            description = "All selected categories of the event are fetched from the database using mainEventId to display in the modal.")
     public List<CategoryInfo> getEventCategoriesForModal(@RequestParam Integer mainEventId) {
         return eventCategoryService.getEventCategoriesForModal(mainEventId);
     }
 
     @PutMapping("/event/categories-modal")
-    @Operation(summary = "Olemasolevate kategooriate andmete muutmine.",
-            description = "Andmebaasis kirjutatakse üle olemasoleva sündmuse kategooriate andmed mainEventId abil.")
+    @Operation(summary = "Modify existing categories data.",
+            description = "In the database, the categories data of the existing event is overwritten using mainEventId.")
     public void editEventCategories(@RequestParam Integer mainEventId, @RequestBody List<CategoryInfo> categoryInfos) {
         eventCategoryService.editEventCategories(mainEventId, categoryInfos);
     }
