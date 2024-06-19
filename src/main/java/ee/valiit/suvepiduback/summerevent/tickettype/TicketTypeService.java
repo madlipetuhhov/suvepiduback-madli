@@ -1,6 +1,5 @@
 package ee.valiit.suvepiduback.summerevent.tickettype;
 
-import ee.valiit.suvepiduback.domain.event.eventdetail.EventDetail;
 import ee.valiit.suvepiduback.domain.event.eventdetail.EventDetailRepository;
 import ee.valiit.suvepiduback.domain.event.mainevent.MainEvent;
 import ee.valiit.suvepiduback.domain.event.mainevent.MainEventRepository;
@@ -19,7 +18,6 @@ import java.util.List;
 public class TicketTypeService {
     private final MainEventRepository mainEventRepository;
     private final TicketTypeRepository ticketTypeRepository;
-    private final EventDetailRepository eventDetailRepository;
     private final TicketTypeMapper ticketTypeMapper;
 
     public void addNewTicketTypes(Integer mainEventId, TicketTypeInfo ticketTypeInfo) {
