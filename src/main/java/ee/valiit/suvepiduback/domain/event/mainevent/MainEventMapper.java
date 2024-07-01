@@ -3,6 +3,7 @@ package ee.valiit.suvepiduback.domain.event.mainevent;
 import ee.valiit.suvepiduback.summerevent.Status;
 import ee.valiit.suvepiduback.summerevent.mainevent.dto.MainEventInfo;
 import ee.valiit.suvepiduback.summerevent.mainevent.dto.MainEventInfoExtended;
+import ee.valiit.suvepiduback.summerevent.mainevent.dto.MainEventInfoShort;
 import ee.valiit.suvepiduback.util.StringConverter;
 import org.mapstruct.*;
 
@@ -16,6 +17,10 @@ public interface MainEventMapper {
     @Mapping(expression = "java(StringConverter.stringToBytes(mainEventInfo.getImageData()))", target = "imageData")
     @Mapping(constant = Status.ACTIVE, target = "status")
     MainEvent toMainEvent(MainEventInfo mainEventInfo);
+
+    @Mapping(source = "id", target = "mainEventId")
+    @Mapping(source = "title", target = "mainEventTitle")
+    MainEventInfoShort toMainEventInfoShort(MainEvent mainEvent);
 
     @Mapping(source = "id", target = "mainEventId")
     @Mapping(source = "title", target = "title")

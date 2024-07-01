@@ -10,6 +10,7 @@ import ee.valiit.suvepiduback.domain.event.mainevent.MainEventRepository;
 import ee.valiit.suvepiduback.summerevent.Status;
 import ee.valiit.suvepiduback.summerevent.mainevent.dto.MainEventInfo;
 import ee.valiit.suvepiduback.summerevent.mainevent.dto.MainEventInfoExtended;
+import ee.valiit.suvepiduback.summerevent.mainevent.dto.MainEventInfoShort;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -26,15 +27,20 @@ public class MainEventService {
     private final MainEventMapper mainEventMapper;
 
     public Integer addNewMainEvent(Integer businessId, MainEventInfo mainEventInfo) {
+        Business business = getOptionalBusiness(businessId);
+        MainEvent mainEvent = mainEventMapper.toMainEvent(mainEventInfo);
+        mainEvent.setBusiness(business);
+        mainEventRepository.save(mainEvent);
+
+        return mainEvent.getId();
+    }
+
+    private Business getOptionalBusiness(Integer businessId) {
         Optional<Business> optionalBusiness = businessRepository.findById(businessId);
         if (optionalBusiness.isEmpty()) {
             throw new IllegalArgumentException("Business not found with id: " + businessId);
         }
-        Business business = optionalBusiness.get();
-        MainEvent mainEvent = mainEventMapper.toMainEvent(mainEventInfo);
-        mainEvent.setBusiness(business);
-        mainEventRepository.save(mainEvent);
-        return mainEvent.getId();
+        return optionalBusiness.get();
     }
 
     public MainEventInfoExtended getMainEvent(Integer mainEventId) {
@@ -47,10 +53,10 @@ public class MainEventService {
         return mainEventMapper.toMainEventInfosExtended(mainEvents);
     }
 
-    public String getMainEventName(Integer eventDetailId) {
+    public MainEventInfoShort getMainEventNameAndId(Integer eventDetailId) {
         EventDetail eventDetail = eventDetailRepository.getReferenceById(eventDetailId);
         MainEvent mainEvent = eventDetail.getMainEvent();
-        return mainEvent.getTitle();
+        return mainEventMapper.toMainEventInfoShort(mainEvent);
     }
 
     public void editMainEvent(MainEventInfoExtended mainEventInfoExtended) {

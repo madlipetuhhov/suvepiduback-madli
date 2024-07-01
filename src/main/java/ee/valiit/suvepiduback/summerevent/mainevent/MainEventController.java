@@ -2,6 +2,7 @@ package ee.valiit.suvepiduback.summerevent.mainevent;
 
 import ee.valiit.suvepiduback.summerevent.mainevent.dto.MainEventInfo;
 import ee.valiit.suvepiduback.summerevent.mainevent.dto.MainEventInfoExtended;
+import ee.valiit.suvepiduback.summerevent.mainevent.dto.MainEventInfoShort;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -34,11 +35,11 @@ public class MainEventController {
         return mainEventService.getMainEvents(businessId);
     }
 
-    @GetMapping("/event/name")
-    @Operation(summary = "Retrieve an event title by eventDetailId.",
-            description = "Retrieves an event title from the database based on the eventDetailId (query parameter). Returns event title as String.")
-    public String getMainEventName(@RequestParam Integer eventDetailId) {
-        return mainEventService.getMainEventName(eventDetailId);
+    @GetMapping("/event/name-id")
+    @Operation(summary = "Retrieve an event title and id by eventDetailId.",
+            description = "Retrieves an event title and id from the database based on the eventDetailId (query parameter). Returns JSON containing event info.")
+    public MainEventInfoShort getMainEventNameAndId(@RequestParam Integer eventDetailId) {
+        return mainEventService.getMainEventNameAndId(eventDetailId);
     }
 
     @PutMapping("/event/main")
