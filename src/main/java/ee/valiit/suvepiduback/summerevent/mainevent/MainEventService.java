@@ -14,6 +14,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -25,7 +26,11 @@ public class MainEventService {
     private final MainEventMapper mainEventMapper;
 
     public Integer addNewMainEvent(Integer businessId, MainEventInfo mainEventInfo) {
-        Business business = businessRepository.getReferenceById(businessId);
+        Optional<Business> optionalBusiness = businessRepository.findById(businessId);
+        if (optionalBusiness.isEmpty()) {
+            throw new IllegalArgumentException("Business not found with id: " + businessId);
+        }
+        Business business = optionalBusiness.get();
         MainEvent mainEvent = mainEventMapper.toMainEvent(mainEventInfo);
         mainEvent.setBusiness(business);
         mainEventRepository.save(mainEvent);
