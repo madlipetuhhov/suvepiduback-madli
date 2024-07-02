@@ -30,3 +30,5 @@ Start PostgreSQL server and create a new database by running files in folder 'da
 
 ## Usage
 The backend provides a REST API to interact with the PostgreSQL database.
+
+TODO: lisa oma andmebaasi tabelite mudeli foto kuhugi

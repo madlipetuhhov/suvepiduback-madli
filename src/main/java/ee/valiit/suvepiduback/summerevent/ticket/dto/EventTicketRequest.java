@@ -16,4 +16,5 @@ import java.io.Serializable;
 public class EventTicketRequest implements Serializable {
     private Integer ticketTypeId;
     private Integer total;
+    private Integer available;
 }
