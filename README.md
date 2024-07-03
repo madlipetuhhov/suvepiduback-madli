@@ -28,7 +28,8 @@ Start PostgreSQL server and create a new database by running files in folder 'da
 - 2_create.sql
 - 3_import.sql
 
+### Database Model
+![Database Model](database/model/Database%20model_Suvepidu.png)
+
 ## Usage
 The backend provides a REST API to interact with the PostgreSQL database.
-
-TODO: lisa oma andmebaasi tabelite mudeli foto kuhugi
