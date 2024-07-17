@@ -1,7 +1,8 @@
 package ee.valiit.suvepiduback.domain.account.business;
 
 import ee.valiit.suvepiduback.summerevent.Status;
-import ee.valiit.suvepiduback.summerevent.account.dto.BusinessInfo;
+import ee.valiit.suvepiduback.summerevent.business.dto.BusinessContactsInfo;
+import ee.valiit.suvepiduback.summerevent.business.dto.BusinessInfo;
 import ee.valiit.suvepiduback.summerevent.business.dto.BusinessesDropdownInfo;
 import org.mapstruct.*;
 
@@ -17,6 +18,11 @@ public interface BusinessMapper {
     @Mapping(source = "email", target = "email")
     @Mapping(constant = Status.ACTIVE, target = "status")
     Business toBusiness(BusinessInfo businessInfo);
+
+    @Mapping(source = "companyName", target = "companyName")
+    @Mapping(source = "phone", target = "phone")
+    @Mapping(source = "email", target = "email")
+    BusinessContactsInfo toBusinessContactsInfo(Business business);
 
     @Mapping(source = "id", target = "businessId")
     @Mapping(source = "companyName", target = "companyName")

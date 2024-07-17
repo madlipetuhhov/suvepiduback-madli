@@ -1,6 +1,6 @@
 package ee.valiit.suvepiduback.summerevent.account;
 
-import ee.valiit.suvepiduback.summerevent.account.dto.BusinessInfo;
+import ee.valiit.suvepiduback.summerevent.business.dto.BusinessInfo;
 import ee.valiit.suvepiduback.summerevent.account.dto.UserInfo;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;

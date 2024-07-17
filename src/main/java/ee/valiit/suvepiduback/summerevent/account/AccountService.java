@@ -1,7 +1,7 @@
 package ee.valiit.suvepiduback.summerevent.account;
 
 import ee.valiit.suvepiduback.domain.account.business.Business;
-import ee.valiit.suvepiduback.summerevent.account.dto.BusinessInfo;
+import ee.valiit.suvepiduback.summerevent.business.dto.BusinessInfo;
 import ee.valiit.suvepiduback.domain.account.business.BusinessMapper;
 import ee.valiit.suvepiduback.domain.account.business.BusinessRepository;
 import ee.valiit.suvepiduback.domain.account.user.User;

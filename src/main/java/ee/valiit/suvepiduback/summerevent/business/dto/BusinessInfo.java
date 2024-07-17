@@ -1,4 +1,4 @@
-package ee.valiit.suvepiduback.summerevent.account.dto;
+package ee.valiit.suvepiduback.summerevent.business.dto;
 
 import ee.valiit.suvepiduback.domain.account.business.Business;
 import ee.valiit.suvepiduback.summerevent.account.dto.UserInfo;
