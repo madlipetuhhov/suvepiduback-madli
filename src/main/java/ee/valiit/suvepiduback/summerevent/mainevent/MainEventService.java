@@ -123,6 +123,8 @@ public class MainEventService {
         eventInfo.setTitle(mainEvent.getTitle());
         eventInfo.setDescription(mainEvent.getDescription());
         eventInfo.setImageData(Arrays.toString(StringConverter.stringToBytes(Arrays.toString(mainEvent.getImageData()))));
+
+        // siin toob ainult esimese eventDetail andmed, ei too mitut asukohta ära
         eventInfo.setEventDetailId(eventDetails.get(0).getId());
         eventInfo.setDate(String.valueOf(eventDetails.get(0).getDate()));
         eventInfo.setStartTime(String.valueOf(eventDetails.get(0).getStartTime()));
@@ -132,7 +134,7 @@ public class MainEventService {
         eventInfo.setLongitude(eventDetails.get(0).getLongitude());
         eventInfo.setLatitude(eventDetails.get(0).getLatitude());
 
-// siin paneb ainult esimese külge, tegelt vaja mitu panna
+        // siin paneb ainult esimese külge, tegelt vaja mitu panna
         eventInfo.setFeatureId(eventFeatures.get(0).getId());
         eventInfo.setFeatureName(featureNames.get(0).getName());
         eventInfo.setCategoryId(eventCategories.get(0).getId());
