@@ -90,40 +90,39 @@ public class MainEventService {
         MainEvent mainEvent = mainEventRepository.getReferenceById(mainEventId);
         List<EventDetail> eventDetails = eventDetailRepository.findEventDetailsBy(mainEventId);
 
-        // Extract event detail IDs
-        List<Integer> eventDetailIds = new ArrayList<>();
-        for (EventDetail eventDetail : eventDetails) {
-            eventDetailIds.add(eventDetail.getId());
-        }
-
-        // Extract county ID from eventDetails and get county name
+        // county Id võtmine eventDetails-ist ja selle järgi county nime otsimine
         Integer countyId = eventDetails.get(0).getCounty().getId();
         County county = countyRepository.getReferenceById(countyId);
 
-        // Extract feature ID from eventFeatures and get feature names
+        // Extract feature IDs from eventFeatures and get feature names
         List<EventFeature> eventFeatures = eventFeatureRepository.findEventFeaturesBy(mainEventId);
-        List<Integer> eventFeatureIds = new ArrayList<>();
-        for (EventFeature eventFeature : eventFeatures) {
-            eventFeatureIds.add(eventFeature.getId());
-        }
+        List<Integer> eventFeatureIds = eventFeatures.stream()
+                .map(EventFeature::getId)
+                .collect(Collectors.toList());
         List<Feature> featureNames = featureRepository.findNamesBy(eventFeatureIds);
 
-        // Extract category ID from eventCategories and get category names
+        // Extract category IDs from eventCategories and get category names
         List<EventCategory> eventCategories = eventCategoryRepository.findEventCategoriesBy(mainEventId);
-        List<Integer> eventCategoryIds = new ArrayList<>();
-        for (EventCategory eventCategory : eventCategories) {
-            eventCategoryIds.add(eventCategory.getId());
-        }
+        List<Integer> eventCategoryIds = eventCategories.stream()
+                .map(EventCategory::getId)
+                .collect(Collectors.toList());
         List<Category> categoryNames = categoryRepository.findNamesBy(eventCategoryIds);
 
+        //  tickettype-ide leidmine mainEventId abil
         List<TicketType> ticketTypes = ticketTypeRepository.findTicketTypesBy(mainEventId);
+
+        // Extract event detail IDs and get ticket total and available info
+        List<Integer> eventDetailIds = eventDetails.stream()
+                .map(EventDetail::getId)
+                .collect(Collectors.toList());
         List<EventTicket> eventTickets = eventTicketRepository.findTicketsBy(eventDetailIds);
 
         // Create EventInfo DTO and populate its fields
+        // tegin siia chatGPT abiga, sest mapperis ei saanud tööle mingil põhjusel
         EventInfo eventInfo = new EventInfo();
         eventInfo.setTitle(mainEvent.getTitle());
         eventInfo.setDescription(mainEvent.getDescription());
-        eventInfo.setImageData((Arrays.toString(StringConverter.stringToBytes(Arrays.toString(mainEvent.getImageData())))));
+        eventInfo.setImageData(Arrays.toString(StringConverter.stringToBytes(Arrays.toString(mainEvent.getImageData()))));
         eventInfo.setEventDetailId(eventDetails.get(0).getId());
         eventInfo.setDate(String.valueOf(eventDetails.get(0).getDate()));
         eventInfo.setStartTime(String.valueOf(eventDetails.get(0).getStartTime()));
@@ -132,12 +131,15 @@ public class MainEventService {
         eventInfo.setCountyName(county.getCounty());
         eventInfo.setLongitude(eventDetails.get(0).getLongitude());
         eventInfo.setLatitude(eventDetails.get(0).getLatitude());
+
+// siin paneb ainult esimese külge, tegelt vaja mitu panna
         eventInfo.setFeatureId(eventFeatures.get(0).getId());
         eventInfo.setFeatureName(featureNames.get(0).getName());
         eventInfo.setCategoryId(eventCategories.get(0).getId());
         eventInfo.setCategoryName(categoryNames.get(0).getName());
         eventInfo.setTicketTypeName(ticketTypes.get(0).getName());
         eventInfo.setTicketTypePrice(ticketTypes.get(0).getPrice());
+
         eventInfo.setTotal(eventTickets.get(0).getTotal());
         eventInfo.setAvailable(eventTickets.get(0).getAvailable());
 

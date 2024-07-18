@@ -12,6 +12,6 @@ public interface FeatureRepository extends JpaRepository<Feature, Integer> {
 //    List<Feature> findFeatureNamesBy(List<Integer> eventFeatureIds);
 
 
-    @Query("select f from Feature f where f.id = :eventFeatureIds order by f.name")
+    @Query("select f from Feature f where f.id in :eventFeatureIds order by f.name")
     List<Feature> findNamesBy(List<Integer> eventFeatureIds);
 }

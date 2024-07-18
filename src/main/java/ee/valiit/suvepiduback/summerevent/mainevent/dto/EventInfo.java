@@ -17,7 +17,6 @@ import java.math.BigDecimal;
 public class EventInfo implements Serializable {
     private String title;
     private String description;
-    private String imageData;
     private Integer eventDetailId;
     private String date;
     private String startTime;
@@ -34,4 +33,5 @@ public class EventInfo implements Serializable {
     private Integer ticketTypePrice;
     private Integer total;
     private Integer available;
+    private String imageData;
 }

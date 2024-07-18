@@ -11,6 +11,6 @@ public interface CategoryRepository extends JpaRepository<Category, Integer> {
 
 //    List<Category> findCategoryNamesBy(List<Integer> eventCategoryIds);
 
-    @Query("select c from Category c where c.id = :eventCategoryIds order by c.name")
+    @Query("select c from Category c where c.id in :eventCategoryIds order by c.name")
     List<Category> findNamesBy(List<Integer> eventCategoryIds);
 }
