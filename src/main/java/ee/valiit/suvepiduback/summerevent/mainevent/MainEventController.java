@@ -42,6 +42,13 @@ public class MainEventController {
         return mainEventService.getMainEventNameAndId(eventDetailId);
     }
 
+    @GetMapping("/event")
+    @Operation(summary = "Retrieve an event info by mainEventId.",
+            description = "Retrieves an event info from the database based on the mainEventId (query parameter). Returns JSON containing event info.")
+    public EventInfo getEventInfo(@RequestParam Integer mainEventId) {
+        return mainEventService.getEventInfo(mainEventId);
+    }
+
     @PutMapping("/event/main")
     @Operation(summary = "Update an event.",
             description = "Updates an existing event in the database based on the provided event object (JSON payload).")
