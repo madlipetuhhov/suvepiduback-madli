@@ -106,7 +106,7 @@ public class MainEventService {
         for (EventFeature eventFeature : eventFeatures) {
             eventFeatureIds.add(eventFeature.getId());
         }
-        List<Feature> featureNames = featureRepository.findFeatureNamesBy(eventFeatureIds);
+        List<Feature> featureNames = featureRepository.findNamesBy(eventFeatureIds);
 
         // Extract category ID from eventCategories and get category names
         List<EventCategory> eventCategories = eventCategoryRepository.findEventCategoriesBy(mainEventId);
@@ -114,7 +114,7 @@ public class MainEventService {
         for (EventCategory eventCategory : eventCategories) {
             eventCategoryIds.add(eventCategory.getId());
         }
-        List<Category> categoryNames = categoryRepository.findCategoryNamesBy(eventCategoryIds);
+        List<Category> categoryNames = categoryRepository.findNamesBy(eventCategoryIds);
 
         List<TicketType> ticketTypes = ticketTypeRepository.findTicketTypesBy(mainEventId);
         List<EventTicket> eventTickets = eventTicketRepository.findTicketsBy(eventDetailIds);
@@ -123,7 +123,7 @@ public class MainEventService {
         EventInfo eventInfo = new EventInfo();
         eventInfo.setTitle(mainEvent.getTitle());
         eventInfo.setDescription(mainEvent.getDescription());
-        eventInfo.setImageData(Arrays.toString(StringConverter.stringToBytes(Arrays.toString(mainEvent.getImageData()))));
+        eventInfo.setImageData((Arrays.toString(StringConverter.stringToBytes(Arrays.toString(mainEvent.getImageData())))));
         eventInfo.setEventDetailId(eventDetails.get(0).getId());
         eventInfo.setDate(String.valueOf(eventDetails.get(0).getDate()));
         eventInfo.setStartTime(String.valueOf(eventDetails.get(0).getStartTime()));
