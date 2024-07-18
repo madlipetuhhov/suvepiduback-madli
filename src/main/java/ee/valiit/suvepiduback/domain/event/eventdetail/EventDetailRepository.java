@@ -8,6 +8,5 @@ import java.util.List;
 public interface EventDetailRepository extends JpaRepository<EventDetail, Integer> {
     @Query("select e from EventDetail e where e.mainEvent.id = :mainEventId")
     List<EventDetail> findEventDetailsBy(Integer mainEventId);
-
 }
 

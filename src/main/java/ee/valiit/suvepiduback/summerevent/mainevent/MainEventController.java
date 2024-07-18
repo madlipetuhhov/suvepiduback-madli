@@ -1,5 +1,6 @@
 package ee.valiit.suvepiduback.summerevent.mainevent;
 
+import ee.valiit.suvepiduback.summerevent.mainevent.dto.EventInfo;
 import ee.valiit.suvepiduback.summerevent.mainevent.dto.MainEventInfo;
 import ee.valiit.suvepiduback.summerevent.mainevent.dto.MainEventInfoExtended;
 import ee.valiit.suvepiduback.summerevent.mainevent.dto.MainEventInfoShort;

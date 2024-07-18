@@ -56,5 +56,4 @@ public class EventDetail {
     @NotNull
     @Column(name = "latitude", nullable = false, precision = 8, scale = 6)
     private BigDecimal latitude;
-
 }

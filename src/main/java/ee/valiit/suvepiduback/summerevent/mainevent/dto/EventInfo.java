@@ -1,8 +1,6 @@
 package ee.valiit.suvepiduback.summerevent.mainevent.dto;
 
 import ee.valiit.suvepiduback.domain.event.mainevent.MainEvent;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,10 +18,6 @@ public class EventInfo implements Serializable {
     private String title;
     private String description;
     private String imageData;
-    private Integer featureId;
-    private String featureName;
-    private Integer categoryId;
-    private String categoryName;
     private Integer eventDetailId;
     private String date;
     private String startTime;
@@ -32,6 +26,10 @@ public class EventInfo implements Serializable {
     private String countyName;
     private BigDecimal longitude;
     private BigDecimal latitude;
+    private Integer featureId;
+    private String featureName;
+    private Integer categoryId;
+    private String categoryName;
     private String ticketTypeName;
     private Integer ticketTypePrice;
     private Integer total;

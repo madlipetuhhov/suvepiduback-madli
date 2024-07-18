@@ -14,4 +14,7 @@ public interface EventTicketRepository extends JpaRepository<EventTicket, Intege
             where e.eventDetail.id = :eventDetailId and e.status = :status
             order by e.ticketType.price DESC""")
     List<EventTicket> findEventTicketsBy(Integer eventDetailId, String status);
+
+    @Query("SELECT et FROM EventTicket et WHERE et.eventDetail.id IN :eventDetailIds")
+    List<EventTicket> findTicketsBy(List<Integer> eventDetailIds);
 }
