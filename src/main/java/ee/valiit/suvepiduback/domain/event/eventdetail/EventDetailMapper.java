@@ -2,6 +2,7 @@ package ee.valiit.suvepiduback.domain.event.eventdetail;
 
 import ee.valiit.suvepiduback.summerevent.eventdetail.dto.EventDetailInfo;
 import ee.valiit.suvepiduback.summerevent.eventdetail.dto.EventDetailInfoExtended;
+import ee.valiit.suvepiduback.summerevent.mainevent.dto.EventInfo;
 import ee.valiit.suvepiduback.util.LocalDateConverter;
 import ee.valiit.suvepiduback.util.LocalTimeConverter;
 import org.mapstruct.*;
@@ -35,6 +36,8 @@ public interface EventDetailMapper {
     EventDetailInfoExtended toEventDetailInfoExtended(EventDetail eventDetail);
 
     List<EventDetailInfoExtended> toEventDetailInfosExtended(List<EventDetail> eventDetails);
+
+    List<EventInfo.EventDetail> toEventInfoEventDetail(List<EventDetail> eventDetails);
 
     @Mapping(expression = "java(LocalDateConverter.stringToLocalDate(eventDetailInfo.getDate()))", target = "date")
     @Mapping(expression = "java(LocalTimeConverter.stringToLocalTime(eventDetailInfo.getStartTime()))", target = "startTime")

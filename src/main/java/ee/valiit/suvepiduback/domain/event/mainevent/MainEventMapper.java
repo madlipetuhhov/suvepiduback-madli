@@ -1,10 +1,6 @@
 package ee.valiit.suvepiduback.domain.event.mainevent;
 
 import ee.valiit.suvepiduback.domain.event.eventdetail.EventDetail;
-import ee.valiit.suvepiduback.domain.event.mainevent.eventcategory.EventCategory;
-import ee.valiit.suvepiduback.domain.event.mainevent.eventfeature.EventFeature;
-import ee.valiit.suvepiduback.domain.ticket.eventticket.EventTicket;
-import ee.valiit.suvepiduback.domain.ticket.tickettype.TicketType;
 import ee.valiit.suvepiduback.summerevent.Status;
 import ee.valiit.suvepiduback.summerevent.mainevent.dto.EventInfo;
 import ee.valiit.suvepiduback.summerevent.mainevent.dto.MainEventInfo;
@@ -21,26 +17,12 @@ import java.util.List;
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring", imports = {StringConverter.class})
 public interface MainEventMapper {
 
-//    @Mapping(source = "title", target = "title")
-//    @Mapping(source = "description", target = "description")
-//    @Mapping(expression = "java(StringConverter.stringToBytes(mainEventInfo.getImageData()))", target = "imageData")
-////    @Mapping(source = "", target = "eventDetailId")
-////    @Mapping(source = "eventDetail.date", target = "date")
-////    @Mapping(source = "eventDetail.startTime", target = "startTime")
-////    @Mapping(source = "eventDetail.endTime", target = "endTime")
-////    @Mapping(source = "eventDetail.address", target = "address")
-////    @Mapping(source = "eventDetail.county.name", target = "countyName")
-////    @Mapping(source = "eventDetail.longitude", target = "longitude")
-////    @Mapping(source = "eventDetail.latitude", target = "latitude")
-////    @Mapping(source = "eventFeature.id", target = "featureId")
-////    @Mapping(source = "eventFeature.name", target = "featureName")
-////    @Mapping(source = "eventCategory.id", target = "categoryId")
-////    @Mapping(source = "eventCategory.name", target = "categoryName")
-////    @Mapping(source = "ticketType.name", target = "ticketTypeName")
-////    @Mapping(source = "ticketType.price", target = "ticketTypePrice")
-////    @Mapping(source = "eventTicket.total", target = "total")
-////    @Mapping(source = "", target = "available")
-//    EventInfo toEventInfo(MainEvent mainEvent, List<EventDetail> eventDetails, List<EventFeature> eventFeatures, List<EventCategory> eventCategories, List<TicketType> ticketTypes, List<EventTicket> eventTickets);
+    @Mapping(source = "title", target = "title")
+    @Mapping(source = "description", target = "description")
+    @Mapping(expression = "java(StringConverter.stringToBytes(mainEventInfo.getImageData()))", target = "imageData")
+//    @Mapping(source = "", target = "counties.countyId")
+//    @Mapping(source = "", target = "counties.countyName")
+EventInfo toEventInfo (MainEvent mainEvent);
 
     @Mapping(source = "title", target = "title")
     @Mapping(source = "description", target = "description")

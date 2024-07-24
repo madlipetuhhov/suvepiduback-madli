@@ -3,8 +3,10 @@ package ee.valiit.suvepiduback.summerevent.mainevent;
 import ee.valiit.suvepiduback.domain.account.business.Business;
 import ee.valiit.suvepiduback.domain.account.business.BusinessRepository;
 import ee.valiit.suvepiduback.domain.event.eventdetail.EventDetail;
+import ee.valiit.suvepiduback.domain.event.eventdetail.EventDetailMapper;
 import ee.valiit.suvepiduback.domain.event.eventdetail.EventDetailRepository;
 import ee.valiit.suvepiduback.domain.event.eventdetail.county.County;
+import ee.valiit.suvepiduback.domain.event.eventdetail.county.CountyMapper;
 import ee.valiit.suvepiduback.domain.event.eventdetail.county.CountyRepository;
 import ee.valiit.suvepiduback.domain.event.mainevent.MainEvent;
 import ee.valiit.suvepiduback.domain.event.mainevent.MainEventMapper;
@@ -22,6 +24,7 @@ import ee.valiit.suvepiduback.domain.ticket.eventticket.EventTicketRepository;
 import ee.valiit.suvepiduback.domain.ticket.tickettype.TicketType;
 import ee.valiit.suvepiduback.domain.ticket.tickettype.TicketTypeRepository;
 import ee.valiit.suvepiduback.summerevent.Status;
+import ee.valiit.suvepiduback.summerevent.county.dto.CountyInfo;
 import ee.valiit.suvepiduback.summerevent.mainevent.dto.EventInfo;
 import ee.valiit.suvepiduback.summerevent.mainevent.dto.MainEventInfo;
 import ee.valiit.suvepiduback.summerevent.mainevent.dto.MainEventInfoExtended;
@@ -51,6 +54,8 @@ public class MainEventService {
     private final EventTicketRepository eventTicketRepository;
 
     private final MainEventMapper mainEventMapper;
+    private final CountyMapper countyMapper;
+    private final EventDetailMapper eventDetailMapper;
 
     public Integer addNewMainEvent(Integer businessId, MainEventInfo mainEventInfo) {
         Business business = getOptionalBusiness(businessId);
@@ -87,7 +92,10 @@ public class MainEventService {
 
     public EventInfo getEventInfo(Integer mainEventId) {
         MainEvent mainEvent = mainEventRepository.getReferenceById(mainEventId);
+        EventInfo eventInfo = mainEventMapper.toEventInfo(mainEvent);
+
         List<EventDetail> eventDetails = eventDetailRepository.findEventDetailsBy(mainEventId);
+        List<EventInfo.EventDetail> eventInfoEventDetail = eventDetailMapper.toEventInfoEventDetail(eventDetails);
 
         // county Id-de võtmine eventDetails-ist ja selle järgi county nimede otsimine
         List<Integer> countyIds = new ArrayList<>();
@@ -95,6 +103,8 @@ public class MainEventService {
             countyIds.add(eventDetail.getCounty().getId());
         }
         List<County> counties = countyRepository.findAllById(countyIds);
+//        siin viitab varasematl tehtud CountyInfo DTO-le, kas nii saab?
+        List<CountyInfo> countyInfos = countyMapper.toCountyInfos(counties);
 
         // Feature ID-de võtmine mainEventId abil tabelist ja siis nende Featurite nimede leidmine Featuride tabelist
         List<EventFeature> eventFeatures = eventFeatureRepository.findEventFeaturesBy(mainEventId);
@@ -104,6 +114,7 @@ public class MainEventService {
         }
         List<Feature> features = featureRepository.findAllById(eventFeatureIds);
 
+
         // Category ID-de võtmine mainEventId abil tabelist ja siis nende Category-de nimede leidmine Featuride tabelist
         List<EventCategory> eventCategories = eventCategoryRepository.findEventCategoriesBy(mainEventId);
         List<Integer> eventCategoryIds = new ArrayList<>();
@@ -111,6 +122,7 @@ public class MainEventService {
             eventCategoryIds.add(eventCategory.getCategory().getId());
         }
         List<Category> categories = categoryRepository.findAllById(eventCategoryIds);
+
 
         //  tickettype-ide leidmine mainEventId abil ja ticketTypeId-de eraldamine listiks, et hiljem otsida kogused ja saadavuse
         List<TicketType> ticketTypes = ticketTypeRepository.findTicketTypesBy(mainEventId);
@@ -120,13 +132,9 @@ public class MainEventService {
         }
         List<EventTicket> eventTickets = eventTicketRepository.findAllById(ticketTypeIds);
 
-        // Create EventInfo DTO and populate its fields
-        // tegin siia chatGPT abiga, sest mapperis ei saanud tööle mingil põhjusel
-        EventInfo eventInfo = new EventInfo();
-        eventInfo.setTitle(mainEvent.getTitle());
-        eventInfo.setDescription(mainEvent.getDescription());
-        eventInfo.setImageData(Arrays.toString(StringConverter.stringToBytes(Arrays.toString(mainEvent.getImageData()))));
-
+        // DTO-le info külge panemine
+        eventInfo.setCounties(countyInfos);
+        eventInfo.setEventDetails(eventInfoEventDetail);
 
 
         return eventInfo;
