@@ -8,7 +8,7 @@ import ee.valiit.suvepiduback.domain.event.eventdetail.county.CountyRepository;
 import ee.valiit.suvepiduback.domain.event.mainevent.MainEvent;
 import ee.valiit.suvepiduback.domain.event.mainevent.MainEventRepository;
 import ee.valiit.suvepiduback.summerevent.eventdetail.dto.EventDetailInfo;
-import ee.valiit.suvepiduback.summerevent.eventdetail.dto.EventDetailInfoExtended;
+import ee.valiit.suvepiduback.summerevent.eventdetail.dto.EventDetailInfoWithCounty;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -35,7 +35,7 @@ public class EventDetailService {
         return eventDetail.getId();
     }
 
-    public List<EventDetailInfoExtended> getEventDetails(Integer mainEventId) {
+    public List<EventDetailInfoWithCounty> getEventDetails(Integer mainEventId) {
         List<EventDetail> eventDetails = eventDetailRepository.findEventDetailsBy(mainEventId);
         return eventDetailMapper.toEventDetailInfosExtended(eventDetails);
     }

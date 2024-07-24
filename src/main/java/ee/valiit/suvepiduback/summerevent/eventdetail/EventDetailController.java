@@ -1,7 +1,7 @@
 package ee.valiit.suvepiduback.summerevent.eventdetail;
 
 import ee.valiit.suvepiduback.summerevent.eventdetail.dto.EventDetailInfo;
-import ee.valiit.suvepiduback.summerevent.eventdetail.dto.EventDetailInfoExtended;
+import ee.valiit.suvepiduback.summerevent.eventdetail.dto.EventDetailInfoWithCounty;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +31,7 @@ public class EventDetailController {
     @GetMapping("/event/details")
     @Operation(summary = "Retrieve an array of event details by mainEventId.",
             description = "Retrieves an array of event details from the database based on the eventDetailId (query parameter). Returns an array of event details.")
-    public List<EventDetailInfoExtended> getEventDetails(@RequestParam Integer mainEventId) {
+    public List<EventDetailInfoWithCounty> getEventDetails(@RequestParam Integer mainEventId) {
         return eventDetailService.getEventDetails(mainEventId);
     }
 

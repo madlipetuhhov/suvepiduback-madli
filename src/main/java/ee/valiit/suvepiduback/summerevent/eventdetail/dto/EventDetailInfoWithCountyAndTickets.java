@@ -1,21 +1,18 @@
 package ee.valiit.suvepiduback.summerevent.eventdetail.dto;
 
-import ee.valiit.suvepiduback.domain.event.eventdetail.county.County;
+import ee.valiit.suvepiduback.summerevent.ticket.dto.EventTicketInfoWithPrice;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
 
-/**
- * DTO for {@link County}
- */
 @EqualsAndHashCode(callSuper = true)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class EventDetailInfoExtended extends EventDetailInfo implements Serializable {
-    private String countyName;
-    private Integer eventDetailId;
+public class EventDetailInfoWithCountyAndTickets extends EventDetailInfoWithCounty implements Serializable {
+    private List<EventTicketInfoWithPrice> tickets;
 }
