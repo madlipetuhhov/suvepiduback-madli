@@ -34,7 +34,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -90,32 +89,36 @@ public class MainEventService {
         MainEvent mainEvent = mainEventRepository.getReferenceById(mainEventId);
         List<EventDetail> eventDetails = eventDetailRepository.findEventDetailsBy(mainEventId);
 
-        // county Id võtmine eventDetails-ist ja selle järgi county nime otsimine
-        Integer countyId = eventDetails.get(0).getCounty().getId();
-        County county = countyRepository.getReferenceById(countyId);
+        // county Id-de võtmine eventDetails-ist ja selle järgi county nimede otsimine
+        List<Integer> countyIds = new ArrayList<>();
+        for (EventDetail eventDetail : eventDetails) {
+            countyIds.add(eventDetail.getCounty().getId());
+        }
+        List<County> counties = countyRepository.findAllById(countyIds);
 
-        // Extract feature IDs from eventFeatures and get feature names
+        // Feature ID-de võtmine mainEventId abil tabelist ja siis nende Featurite nimede leidmine Featuride tabelist
         List<EventFeature> eventFeatures = eventFeatureRepository.findEventFeaturesBy(mainEventId);
-        List<Integer> eventFeatureIds = eventFeatures.stream()
-                .map(EventFeature::getId)
-                .collect(Collectors.toList());
-        List<Feature> featureNames = featureRepository.findNamesBy(eventFeatureIds);
+        List<Integer> eventFeatureIds = new ArrayList<>();
+        for (EventFeature eventFeature : eventFeatures) {
+            eventFeatureIds.add(eventFeature.getFeature().getId());
+        }
+        List<Feature> features = featureRepository.findAllById(eventFeatureIds);
 
-        // Extract category IDs from eventCategories and get category names
+        // Category ID-de võtmine mainEventId abil tabelist ja siis nende Category-de nimede leidmine Featuride tabelist
         List<EventCategory> eventCategories = eventCategoryRepository.findEventCategoriesBy(mainEventId);
-        List<Integer> eventCategoryIds = eventCategories.stream()
-                .map(EventCategory::getId)
-                .collect(Collectors.toList());
-        List<Category> categoryNames = categoryRepository.findNamesBy(eventCategoryIds);
+        List<Integer> eventCategoryIds = new ArrayList<>();
+        for (EventCategory eventCategory : eventCategories) {
+            eventCategoryIds.add(eventCategory.getCategory().getId());
+        }
+        List<Category> categories = categoryRepository.findAllById(eventCategoryIds);
 
-        //  tickettype-ide leidmine mainEventId abil
+        //  tickettype-ide leidmine mainEventId abil ja ticketTypeId-de eraldamine listiks, et hiljem otsida kogused ja saadavuse
         List<TicketType> ticketTypes = ticketTypeRepository.findTicketTypesBy(mainEventId);
-
-        // Extract event detail IDs and get ticket total and available info
-        List<Integer> eventDetailIds = eventDetails.stream()
-                .map(EventDetail::getId)
-                .collect(Collectors.toList());
-        List<EventTicket> eventTickets = eventTicketRepository.findTicketsBy(eventDetailIds);
+        List<Integer> ticketTypeIds = new ArrayList<>();
+        for (TicketType ticketType : ticketTypes) {
+            ticketTypeIds.add(ticketType.getId());
+        }
+        List<EventTicket> eventTickets = eventTicketRepository.findAllById(ticketTypeIds);
 
         // Create EventInfo DTO and populate its fields
         // tegin siia chatGPT abiga, sest mapperis ei saanud tööle mingil põhjusel
@@ -124,26 +127,7 @@ public class MainEventService {
         eventInfo.setDescription(mainEvent.getDescription());
         eventInfo.setImageData(Arrays.toString(StringConverter.stringToBytes(Arrays.toString(mainEvent.getImageData()))));
 
-        // siin toob ainult esimese eventDetail andmed, ei too mitut asukohta ära
-        eventInfo.setEventDetailId(eventDetails.get(0).getId());
-        eventInfo.setDate(String.valueOf(eventDetails.get(0).getDate()));
-        eventInfo.setStartTime(String.valueOf(eventDetails.get(0).getStartTime()));
-        eventInfo.setEndTime(String.valueOf(eventDetails.get(0).getEndTime()));
-        eventInfo.setAddress(eventDetails.get(0).getAddress());
-        eventInfo.setCountyName(county.getCounty());
-        eventInfo.setLongitude(eventDetails.get(0).getLongitude());
-        eventInfo.setLatitude(eventDetails.get(0).getLatitude());
 
-        // siin paneb ainult esimese külge, tegelt vaja mitu panna
-        eventInfo.setFeatureId(eventFeatures.get(0).getId());
-        eventInfo.setFeatureName(featureNames.get(0).getName());
-        eventInfo.setCategoryId(eventCategories.get(0).getId());
-        eventInfo.setCategoryName(categoryNames.get(0).getName());
-        eventInfo.setTicketTypeName(ticketTypes.get(0).getName());
-        eventInfo.setTicketTypePrice(ticketTypes.get(0).getPrice());
-
-        eventInfo.setTotal(eventTickets.get(0).getTotal());
-        eventInfo.setAvailable(eventTickets.get(0).getAvailable());
 
         return eventInfo;
     }
