@@ -12,5 +12,4 @@ public interface EventFeatureRepository extends JpaRepository<EventFeature, Inte
 
     @Query("select e from EventFeature e where e.mainEvent.id = :mainEventId and e.feature.id = :featureId")
     Optional<EventFeature> findEventFeatureBy(Integer mainEventId, Integer featureId);
-
 }

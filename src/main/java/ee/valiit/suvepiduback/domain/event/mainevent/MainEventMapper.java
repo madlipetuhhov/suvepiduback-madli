@@ -1,6 +1,5 @@
 package ee.valiit.suvepiduback.domain.event.mainevent;
 
-import ee.valiit.suvepiduback.domain.event.eventdetail.EventDetail;
 import ee.valiit.suvepiduback.summerevent.Status;
 import ee.valiit.suvepiduback.summerevent.mainevent.dto.EventInfo;
 import ee.valiit.suvepiduback.summerevent.mainevent.dto.MainEventInfo;
@@ -19,10 +18,8 @@ public interface MainEventMapper {
 
     @Mapping(source = "title", target = "title")
     @Mapping(source = "description", target = "description")
-    @Mapping(expression = "java(StringConverter.stringToBytes(mainEventInfo.getImageData()))", target = "imageData")
-//    @Mapping(source = "", target = "counties.countyId")
-//    @Mapping(source = "", target = "counties.countyName")
-EventInfo toEventInfo (MainEvent mainEvent);
+    @Mapping(expression = "java(StringConverter.bytesToString(mainEvent.getImageData()))", target = "imageData")
+    EventInfo toEventInfo(MainEvent mainEvent);
 
     @Mapping(source = "title", target = "title")
     @Mapping(source = "description", target = "description")
