@@ -37,7 +37,7 @@ public class EventDetailService {
 
     public List<EventDetailInfoWithCounty> getEventDetails(Integer mainEventId) {
         List<EventDetail> eventDetails = eventDetailRepository.findEventDetailsBy(mainEventId);
-        return eventDetailMapper.toEventDetailInfosExtended(eventDetails);
+        return eventDetailMapper.toEventDetailInfosWithCounty(eventDetails);
     }
 
     public EventDetailInfo getEventDetail(Integer eventDetailId) {
